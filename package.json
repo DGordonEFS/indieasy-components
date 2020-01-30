@@ -1,5 +1,5 @@
 {
-  "name": "indieasy-components",
+  "name": "@indieasy.software/indieasy-components",
   "version": "1.0.0",
   "description": "Rinse, React, repeat. A React component library boilerplate.",
   "main": "dist/components.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indieasysoftware/indieasy-components.git"
+    "url": "git+https://github.com/DGordonEFS/indieasy-components.git"
   },
   "keywords": [
     "boilerplate",
