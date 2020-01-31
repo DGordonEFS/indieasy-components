@@ -2,7 +2,7 @@
   "name": "@indieasy.software/indieasy-components",
   "version": "1.0.4",
   "description": "Core components for Indieasy.",
-  "main": "./index.js",
+  "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
