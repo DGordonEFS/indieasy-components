@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Rinse, React, repeat. A React component library boilerplate.",
   "main": "dist/components.js",
   "scripts": {
