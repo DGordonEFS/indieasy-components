@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import ThemeManager, { Theme, ComponentTheme } from '../../theming';
+import ThemeManager, { ComponentTheme } from '../../theming/theme';
 
 const theme = ThemeManager.getCurrentTheme();
 const defaultComponentTheme = '_button';
