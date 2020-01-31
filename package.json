@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Core components for Indieasy.",
   "main": "build/index.js",
   "scripts": {
