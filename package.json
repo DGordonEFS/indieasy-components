@@ -8,9 +8,7 @@
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001",
     "docz:dev": "docz dev",
-    "docz:build": "docz build",
-    "prepublishOnly": "rm -rf lib && npm run build",
-    "postbuild": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz"
+    "docz:build": "docz build"
   },
   "repository": {
     "type": "git",
