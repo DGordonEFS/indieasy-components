@@ -1,8 +1,9 @@
-import ThemeManager, {
-	Theme as theme,
-	ComponentTheme as componentTheme,
+export {
+	default as ThemeManager,
+	Theme,
+	ComponentTheme,
+	currentTheme,
+	addComponentTheme,
+	createFinalStyle,
+	createTheme,
 } from './theme';
-
-export default ThemeManager;
-export const Theme = theme;
-export const ComponentTheme = componentTheme;

@@ -1,30 +1,26 @@
 import React from 'react';
 import Radium from 'radium';
 
-import ThemeManager, { ComponentTheme } from '../../theming/theme';
+import { addComponentTheme, createFinalStyle } from 'theming/theme';
 
-const theme = ThemeManager.getCurrentTheme();
 const defaultComponentTheme = '_button';
-const componentTheme = new ComponentTheme(defaultComponentTheme);
-componentTheme.value = {
+
+addComponentTheme(defaultComponentTheme, {
 	backgroundColor: 'red',
-	border: '1px solid red',
-};
-theme.addComponent(componentTheme);
+	border: '1px solid black',
+	color: 'white',
+});
 
 // Components are functions, and they must start with a capital letter
 function Button(props) {
-	const componentThemeId = props.theme || defaultComponentTheme;
-
-	const theme = ThemeManager.getCurrentTheme();
-	const componentTheme = theme.getComponent(componentThemeId);
-
 	const onClick = (e) => {
 		if (props.onClick) props.onClick(e);
 	};
 
+	const style = createFinalStyle(defaultComponentTheme, props);
+
 	return (
-		<div onMouseUp={onClick} style={componentTheme.value}>
+		<div onMouseUp={onClick} style={style}>
 			{props.children}
 		</div>
 	);

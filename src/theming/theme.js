@@ -22,6 +22,33 @@ class ThemeManager {
 		const theme = this._themes[this._currentThemeId];
 		return theme;
 	};
+
+	createFinalStyle = (defaultComponentTheme, props, baseStyle) => {
+		const theme = this.getCurrentTheme();
+
+		const style = baseStyle || {};
+
+		if (props.baseStyle) {
+			Object.assign(style, props.baseStyle);
+		}
+
+		const componentThemeIds = props.themes || [
+			props.theme || defaultComponentTheme,
+		];
+
+		if (props.additionalThemes)
+			componentThemeIds.push(...props.additionalThemes);
+
+		const componentThemes = componentThemeIds.map(
+			(id) => theme.getComponent(id).value
+		);
+
+		componentThemes.forEach((componentTheme) => {
+			Object.assign(style, componentTheme);
+		});
+
+		return style;
+	};
 }
 
 // total theme for all components
@@ -61,3 +88,15 @@ themeManager.addTheme(new Theme('_default'));
 themeManager.setCurrentTheme('_default');
 
 export default themeManager;
+
+export const currentTheme = themeManager.getCurrentTheme;
+export const addComponentTheme = (id, value, themeId) => {
+	const theme =
+		themeManager.getTheme(themeId) || themeManager.getCurrentTheme();
+	theme.addComponent(new ComponentTheme(id, value));
+};
+export const createFinalStyle = themeManager.createFinalStyle;
+
+export const createTheme = (id) => {
+	return themeManager.addTheme(new Theme(id));
+};

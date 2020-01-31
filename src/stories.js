@@ -3,9 +3,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
-import { Button } from './index';
+import { Button, ThemeManager } from './index';
 
-console.log(Button);
+console.log(ThemeManager);
 
 // Here we describe the stories we want to see of the Button. The component is
 // pretty simple so we will just make two, one with text and one with emojis
