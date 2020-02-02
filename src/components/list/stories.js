@@ -14,7 +14,7 @@ storiesOf('List')
 	.add('with basic ListItem', () => <List data={basicData} />)
 	.add('with ListItemRightButton', () => (
 		<List
-			itemProps={{ rightText: '>>' }}
+			itemProps={{ rightSelectedText: '>>' }}
 			renderer={ListItemRightButton}
 			data={basicData}
 		/>
@@ -23,7 +23,7 @@ storiesOf('List')
 		<List
 			selectable
 			selectedIndex={1}
-			itemProps={{ rightText: '>>' }}
+			itemProps={{ rightSelectedText: '>>' }}
 			renderer={ListItemRightButton}
 			data={basicData}
 		/>

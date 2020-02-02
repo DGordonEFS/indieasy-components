@@ -55,18 +55,20 @@ export class ListItemRightButton extends Component {
 	render() {
 		const xStyle =
 			!this.state.over &&
-			this.props.rightOverText != this.props.rightText &&
-			!this.props.selected
+			!this.props.rightText &&
+			(!this.props.selected || !this.props.rightSelectedText)
 				? { visibility: 'hidden' }
 				: null;
 
 		const rightButtonText = this.state.over
 			? this.props.rightOverText || 'X'
+			: this.props.selected
+			? this.props.rightSelectedText || 'X'
 			: this.props.rightText || 'X';
 
 		const buttonTheme =
 			this.props.selected &&
-			this.props.rightOverText != this.props.rightText &&
+			this.props.rightOverText != this.props.rightSelectedText &&
 			!this.state.over
 				? themeIds.LIST_ITEM_BUTTON_SELECTED
 				: themeIds.LIST_ITEM_BUTTON;

@@ -19,7 +19,8 @@ const THEME_DEFAULT = '_default';
 
 const colors = {
 	GRAY: 'gray',
-	LIGHT_GRAY: '#BBBBBB',
+	LIGHT_GRAY: '#666666',
+	LIGHTER_GRAY: '#BBBBBB',
 	DARK_GRAY: '#464646',
 	DARKER_GRAY: '#363636',
 	DARKEST_GRAY: '#252525',
@@ -32,7 +33,7 @@ addComponentTheme(
 		border: '1px solid black',
 		color: 'white',
 		':hover': {
-			backgroundColor: colors.LIGHT_GRAY,
+			backgroundColor: colors.LIGHTER_GRAY,
 		},
 	},
 	THEME_DEFAULT
@@ -47,7 +48,8 @@ addComponentTheme(
 		padding: '5px',
 		cursor: 'pointer',
 		':hover': {
-			backgroundColor: colors.LIGHT_GRAY,
+			backgroundColor: colors.LIGHTER_GRAY,
+			color: 'black',
 		},
 	},
 	THEME_DEFAULT
@@ -56,14 +58,11 @@ addComponentTheme(
 addComponentTheme(
 	LIST_ITEM_SELECTED,
 	{
-		backgroundColor: colors.DARKER_GRAY,
+		backgroundColor: colors.DARKEST_GRAY,
 		border: '1px solid black',
 		color: 'white',
 		padding: '5px',
 		cursor: 'pointer',
-		':hover': {
-			backgroundColor: colors.DARKEST_GRAY,
-		},
 	},
 	THEME_DEFAULT
 );
@@ -142,11 +141,10 @@ addComponentTheme(
 addComponentTheme(
 	TAB_BAR_ITEM,
 	{
-		backgroundColor: '#666666',
+		backgroundColor: colors.GRAY,
 		color: 'white',
 		display: 'flex',
 		border: '1px solid black',
-		borderBottom: '1px solid black',
 		borderTopLeftRadius: '5px',
 		borderTopRightRadius: '5px',
 		height: '40%',
@@ -158,6 +156,10 @@ addComponentTheme(
 		boxSizing: 'border',
 		fontSize: '0.8rem',
 		cursor: 'pointer',
+		':hover': {
+			backgroundColor: colors.LIGHTER_GRAY,
+			color: 'black',
+		},
 	},
 	THEME_DEFAULT
 );
@@ -165,10 +167,12 @@ addComponentTheme(
 addComponentTheme(
 	TAB_BAR_ITEM_SELECTED,
 	{
-		backgroundColor: colors.DARKER_GRAY,
+		backgroundColor: colors.DARKEST_GRAY,
 		color: 'white',
 		display: 'flex',
-		border: '1px solid black',
+		borderTop: '1px solid black',
+		borderLeft: '1px solid black',
+		borderRight: '1px solid black',
 		borderBottom: 'none',
 		borderTopLeftRadius: '5px',
 		borderTopRightRadius: '5px',
@@ -209,12 +213,17 @@ addComponentTheme(
 	{
 		backgroundColor: colors.DARKER_GRAY,
 		color: 'white',
-		marginRight: '10px',
 		fontSize: '1.2rem',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-around',
+		paddingLeft: '5px',
+		paddingRight: '5px',
 		cursor: 'pointer',
+		':hover': {
+			backgroundColor: colors.LIGHTER_GRAY,
+			color: 'black',
+		},
 	},
 	THEME_DEFAULT
 );
