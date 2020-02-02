@@ -1,59 +1,25 @@
 import React, { Component } from 'react';
-import { addComponentTheme, createFinalStyle } from 'theming/theme';
 
 import List from 'components/list';
-import { ListItemX } from 'components/list/ListItem';
+import { ListItemRightButton } from 'components/list/ListItem';
 
-addComponentTheme('tabbar', {
-	backgroundColor: '#363636',
-	paddingLeft: '5px',
-	width: '100%',
-	height: '2rem',
-	border: '1px solid black',
-	display: 'flex',
-	alignItems: 'flex-end',
-});
-
-addComponentTheme('tabbar-item', {
-	backgroundColor: '#666666',
-	color: 'white',
-	display: 'flex',
-	border: '1px solid black',
-	borderTopLeftRadius: '5px',
-	borderTopRightRadius: '5px',
-	height: '65%',
-	paddingTop: '3px',
-	paddingLeft: '5px',
-	paddingRight: '5px',
-	userSelect: 'none',
-});
-
-addComponentTheme('tabbar-item-selected', {
-	backgroundColor: '#363636',
-	color: 'white',
-	display: 'flex',
-	border: '1px solid black',
-	borderBottom: 'none',
-	borderTopLeftRadius: '5px',
-	borderTopRightRadius: '5px',
-	height: '65%',
-	paddingTop: '3px',
-	paddingLeft: '5px',
-	paddingRight: '5px',
-	userSelect: 'none',
-});
+import * as themeIds from 'components/themes';
 
 const TabBar = (props) => {
-	const itemTheme = props.itemTheme || 'tabbar-item';
-	const selectedItemTheme = props.selectedItemTheme || 'tabbar-item-selected';
-
-	props.data.forEach((item, index) => {
-		const theme = props.selectedIndex == index ? selectedItemTheme : itemTheme;
-		item.itemProps = { ...item.itemProps, theme: theme };
-	});
+	const itemTheme = props.itemTheme || themeIds.TAB_BAR_ITEM;
+	const selectedItemTheme =
+		props.selectedItemTheme || themeIds.TAB_BAR_ITEM_SELECTED;
 
 	const list = (
-		<List renderer={ListItemX} horizontal theme="tabbar" {...props} />
+		<List
+			selectable
+			itemTheme={itemTheme}
+			selectedItemTheme={selectedItemTheme}
+			renderer={ListItemRightButton}
+			horizontal
+			theme={themeIds.TAB_BAR}
+			{...props}
+		/>
 	);
 
 	return list;
@@ -66,7 +32,6 @@ export class ControlledTabBar extends Component {
 
 	selectItemHandler = (item) => {
 		const index = this.props.data.findIndex((dataItem) => dataItem == item);
-		console.log(item);
 		if (this.state.selectedIndex != index)
 			this.setState({ selectedIndex: index });
 	};

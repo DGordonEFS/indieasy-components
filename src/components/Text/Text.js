@@ -1,15 +1,11 @@
 import React from 'react';
 
-import { addComponentTheme, createFinalStyle } from '../../theming/theme';
+import { createFinalStyle } from '../../theming/theme';
 
-const defaultComponentTheme = '_Text';
-
-addComponentTheme(defaultComponentTheme, {
-	userSelect: 'none',
-});
+import * as themeIds from 'components/themes';
 
 const Text = (props) => {
-	const style = createFinalStyle(defaultComponentTheme, props);
+	const style = createFinalStyle(themeIds.TEXT, props);
 
 	return (
 		<span {...props} style={style}>

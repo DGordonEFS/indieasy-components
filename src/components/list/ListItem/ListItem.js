@@ -1,35 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Button from 'components/Button';
 import Text from 'components/Text';
 
-import { addComponentTheme } from 'theming/theme';
-
-const defaultComponentTheme = '_list-item';
-
-addComponentTheme(defaultComponentTheme, {
-	backgroundColor: 'gray',
-	border: '1px solid black',
-	color: 'white',
-	padding: '5px',
-});
-
-addComponentTheme('_list-item-text', {
-	userSelect: 'none',
-});
-
-addComponentTheme('_list-item-text-right-content', {
-	marginRight: '15px',
-	userSelect: 'none',
-});
+import * as themeIds from 'components/themes';
 
 const ListItem = (props) => {
-	const textTheme = props.textTheme || '_list-item-text';
+	const theme = props.theme || themeIds.LIST_ITEM;
+	const textTheme = props.textTheme || themeIds.LIST_ITEM_TEXT;
 	const button = (
 		<Button
-			theme={defaultComponentTheme}
 			onClick={() => props.onSelect(props.data)}
 			{...props}
+			theme={theme}
 			baseStyle={{ ...props.baseStyle, ...props.data.style }}
 		>
 			<Text theme={textTheme}>{props.data.text}</Text>
@@ -42,17 +25,11 @@ const ListItem = (props) => {
 
 export default ListItem;
 
-addComponentTheme('_list-item-button', {
-	backgroundColor: 'transparent',
-	color: 'black',
-	marginLeft: '5px',
-});
-
 export const ListItemRightContent = (props) => {
 	return (
 		<ListItem
 			{...props}
-			textTheme="_list-item-text-right-content"
+			textTheme={themeIds.LIST_ITEM_RIGHT_CONTENT_TEXT}
 			baseStyle={{
 				display: 'flex',
 				justifyContent: 'space-between',
@@ -64,10 +41,48 @@ export const ListItemRightContent = (props) => {
 	);
 };
 
-export const ListItemX = (props) => {
-	return (
-		<ListItemRightContent {...props}>
-			<Button theme="_list-item-button">X</Button>
-		</ListItemRightContent>
-	);
-};
+export class ListItemRightButton extends Component {
+	state = { over: false };
+
+	mouseEnterHandler = (e) => {
+		this.setState({ over: true });
+	};
+
+	mouseLeaveHandler = (e) => {
+		this.setState({ over: false });
+	};
+
+	render() {
+		const xStyle =
+			!this.state.over &&
+			this.props.rightOverText != this.props.rightText &&
+			!this.props.selected
+				? { visibility: 'hidden' }
+				: null;
+
+		const rightButtonText = this.state.over
+			? this.props.rightOverText || 'X'
+			: this.props.rightText || 'X';
+
+		const buttonTheme =
+			this.props.selected &&
+			this.props.rightOverText != this.props.rightText &&
+			!this.state.over
+				? themeIds.LIST_ITEM_BUTTON_SELECTED
+				: themeIds.LIST_ITEM_BUTTON;
+
+		return (
+			<ListItemRightContent
+				{...this.props}
+				onMouseEnter={this.mouseEnterHandler}
+				onMouseLeave={this.mouseLeaveHandler}
+			>
+				<div style={xStyle}>
+					<Button theme={buttonTheme}>
+						<Text>{rightButtonText}</Text>
+					</Button>
+				</div>
+			</ListItemRightContent>
+		);
+	}
+}

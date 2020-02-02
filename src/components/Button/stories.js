@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
 import Button from './Button';
+import Text from 'components/Text';
 
 import { addComponentTheme } from 'theming';
 
@@ -18,16 +19,22 @@ addComponentTheme('button-large', {
 
 storiesOf('Button')
 	.add('with text', () => (
-		<Button onClick={action('clicked')}>Hello Button</Button>
+		<Button pointer onClick={action('clicked')}>
+			<Text>Hello Button</Text>
+		</Button>
 	))
 	.add('with emoji', () => (
-		<Button onClick={action('clicked')}>🚿 🚿 🐈 🐈</Button>
+		<Button onClick={action('clicked')}>
+			<Text>🚿 🚿 🐈 🐈</Text>
+		</Button>
 	))
 	.add('with themes + text', () => (
-		<Button themes={['blue-button', 'button-large']}>Hello Button</Button>
+		<Button themes={['blue-button', 'button-large']}>
+			<Text>Hello Button</Text>
+		</Button>
 	))
 	.add('with additionalThemes + text', () => (
 		<Button additionalThemes={['blue-button', 'button-large']}>
-			Hello Button
+			<Text>Hello Button</Text>
 		</Button>
 	));

@@ -3,10 +3,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
-import ListItem, { ListItemX } from './ListItem';
+import ListItem, { ListItemRightButton } from './ListItem';
 
 import { addComponentTheme } from 'theming';
 
 storiesOf('ListItem')
 	.add('with basic', () => <ListItem data={{ text: 'Hello World' }} />)
-	.add('with X Button', () => <ListItemX data={{ text: 'Hello World' }} />);
+	.add('with X Button', () => (
+		<ListItemRightButton data={{ text: 'Hello World' }} />
+	))
+	.add('with >>/X Button', () => (
+		<ListItemRightButton rightText=">>" data={{ text: 'Hello World' }} />
+	));

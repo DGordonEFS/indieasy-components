@@ -15,10 +15,15 @@ storiesOf('TabBar')
 	.add('with selectedIndex', () => (
 		<TabBar
 			selectedIndex={selectedIndex}
+			itemProps={{ pointer: true }}
 			data={basicData}
 			onSelectItem={(item) => console.log(item)}
 		/>
 	))
 	.add('with ControlledTabBar', () => (
-		<ControlledTabBar selectedIndex={selectedIndex} data={basicData} />
+		<ControlledTabBar
+			itemProps={{ pointer: true }}
+			selectedIndex={selectedIndex}
+			data={basicData}
+		/>
 	));
