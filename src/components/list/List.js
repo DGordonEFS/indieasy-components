@@ -3,7 +3,7 @@ import { createFinalStyle } from '../../theming/theme';
 
 import * as themeIds from 'components/themes';
 
-import { ListItem } from './ListItem';
+import { ListItem } from '../ListItem';
 
 const List = (props) => {
 	const itemProps = props.itemProps || {};

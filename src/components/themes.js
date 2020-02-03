@@ -8,6 +8,7 @@ export const LIST_ITEM_RIGHT_CONTENT_TEXT = 'list-item-text-right-content';
 export const LIST_ITEM_BUTTON = 'list-item-button';
 export const LIST_ITEM_BUTTON_SELECTED = 'list-item-button-selected';
 export const LIST = 'list';
+export const SCROLL_PANE = 'scroll-pane';
 export const TAB_BAR = 'tab-bar';
 export const TAB_BAR_ITEM = 'tab-bar-item';
 export const TAB_BAR_ITEM_SELECTED = 'tab-bar-item-selected';
@@ -32,6 +33,7 @@ addComponentTheme(
 		backgroundColor: colors.GRAY,
 		border: '1px solid black',
 		color: 'white',
+		cursor: 'pointer',
 		':hover': {
 			backgroundColor: colors.LIGHTER_GRAY,
 		},
@@ -121,6 +123,14 @@ addComponentTheme(
 		border: '1px solid black',
 		color: 'white',
 		padding: '2px',
+	},
+	THEME_DEFAULT
+);
+
+addComponentTheme(
+	SCROLL_PANE,
+	{
+		flexGrow: 1,
 	},
 	THEME_DEFAULT
 );

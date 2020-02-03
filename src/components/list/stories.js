@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
 import List from './List';
-import { ListItemRightButton } from './ListItem';
+import { ListItemRightButton } from '../ListItem';
 
 import { addComponentTheme } from 'theming';
 

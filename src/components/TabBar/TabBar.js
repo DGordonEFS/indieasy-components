@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import List from 'components/list';
-import { ListItemRightButton } from 'components/list/ListItem';
+import List from 'components/List';
+import { ListItemRightButton } from 'components/ListItem';
 
 import * as themeIds from 'components/themes';
 

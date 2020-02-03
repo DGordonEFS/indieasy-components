@@ -18,7 +18,7 @@ function Button(props) {
 		if (props.onMouseLeave) props.onMouseLeave(e);
 	};
 
-	const style = createFinalStyle(themeIds.BUTTON, props);
+	const style = createFinalStyle(themeIds.BUTTON, props, props.baseStyle);
 
 	if (props.pointer) style.cursor = 'pointer';
 
