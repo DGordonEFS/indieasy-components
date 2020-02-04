@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 
+import IndieasyComponent from 'components';
 import List from 'components/List';
 import { ListItemRightButton } from 'components/ListItem';
 
 import * as themeIds from 'components/themes';
 
-const TabBar = (props) => {
-	const itemTheme = props.itemTheme || themeIds.TAB_BAR_ITEM;
-	const selectedItemTheme =
-		props.selectedItemTheme || themeIds.TAB_BAR_ITEM_SELECTED;
+class TabBar extends IndieasyComponent {
+	render() {
+		const itemTheme = this.props.itemTheme || themeIds.TAB_BAR_ITEM;
+		const selectedItemTheme =
+			this.props.selectedItemTheme || themeIds.TAB_BAR_ITEM_SELECTED;
 
-	let itemProps = props.itemProps || {};
-	itemProps = { alwaysShowButton: true, ...itemProps };
-	const list = (
-		<List
-			selectable
-			itemTheme={itemTheme}
-			selectedItemTheme={selectedItemTheme}
-			renderer={ListItemRightButton}
-			horizontal
-			theme={themeIds.TAB_BAR}
-			{...props}
-			itemProps={itemProps}
-		/>
-	);
+		let itemProps = this.props.itemProps || {};
+		itemProps = { alwaysShowButton: true, ...itemProps };
+		const list = (
+			<List
+				selectable
+				itemTheme={itemTheme}
+				selectedItemTheme={selectedItemTheme}
+				renderer={ListItemRightButton}
+				horizontal
+				theme={themeIds.TAB_BAR}
+				{...this.props}
+				itemProps={itemProps}
+			/>
+		);
 
-	return list;
-};
+		return list;
+	}
+}
 
 export default TabBar;
 
-export class ControlledTabBar extends Component {
+export class ControlledTabBar extends IndieasyComponent {
 	state = { selectedIndex: 0 };
 
 	selectItemHandler = (item) => {

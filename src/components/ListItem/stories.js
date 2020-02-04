@@ -12,6 +12,6 @@ storiesOf('ListItem')
 	.add('with X Button', () => (
 		<ListItemRightButton data={{ text: 'Hello World' }} />
 	))
-	.add('with >>/X Button', () => (
+	.add('with right text and X Button', () => (
 		<ListItemRightButton rightText=">>" data={{ text: 'Hello World' }} />
 	));

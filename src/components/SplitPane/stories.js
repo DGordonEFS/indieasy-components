@@ -4,9 +4,11 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
 import SplitPane from './SplitPane';
+import Button from 'components/Button';
+import Panel from 'components/Panel';
 import { ControlledTabBar } from 'components/TabBar';
 
-import { addComponentTheme } from 'theming';
+import { setCurrentTheme } from 'theming';
 
 const basicData = [{ text: 'File' }, { text: 'Edit' }, { text: 'Options' }];
 
@@ -67,7 +69,9 @@ storiesOf('SplitPane')
 					height: '100px',
 					flexShrink: 0,
 				}}
-			/>
+			>
+				<Button onClick={() => setCurrentTheme('light')}>Change Theme</Button>
+			</div>
 			<div
 				style={{
 					width: '100%',
@@ -75,27 +79,24 @@ storiesOf('SplitPane')
 				}}
 			>
 				<SplitPane id="a">
-					<div
-						style={{
+					<Panel
+						baseStyle={{
 							width: '100%',
 							height: '100%',
-							backgroundColor: 'red',
 						}}
 					/>
 					<SplitPane id="b">
 						<SplitPane id="c" vertical>
-							<div
-								style={{
+							<Panel
+								baseStyle={{
 									width: '100%',
 									height: '100%',
-									backgroundColor: 'red',
 								}}
 							/>
-							<div
-								style={{
+							<Panel
+								baseStyle={{
 									width: '100%',
 									height: '100%',
-									backgroundColor: 'blue',
 								}}
 							/>
 						</SplitPane>
@@ -111,9 +112,8 @@ storiesOf('SplitPane')
 								selectedIndex={selectedIndex}
 								data={basicData}
 							/>
-							<div
-								style={{
-									backgroundColor: '#252525',
+							<Panel
+								baseStyle={{
 									width: '100%',
 									height: '100%',
 								}}

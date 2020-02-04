@@ -2,6 +2,16 @@ class ThemeManager {
 	_themes = {};
 	_currentThemeId;
 
+	_listeners = { change: [] };
+
+	addEventListener = (type, func) => {
+		this._listeners[type].push(func);
+	};
+
+	removeEventListener = (type, func) => {
+		this._listeners[type] = this._listeners[type].filter((x) => x != func);
+	};
+
 	addTheme = (theme) => {
 		this._themes[theme.id] = theme;
 	};
@@ -16,6 +26,8 @@ class ThemeManager {
 
 	setCurrentTheme = (id) => {
 		this._currentThemeId = id;
+
+		this._listeners.change.forEach((func) => func());
 	};
 
 	getCurrentTheme = () => {
@@ -100,3 +112,27 @@ export const createFinalStyle = themeManager.createFinalStyle;
 export const createTheme = (id) => {
 	return themeManager.addTheme(new Theme(id));
 };
+
+export const listen = (func) => {
+	themeManager.addEventListener('change', func);
+};
+
+export const unlisten = (func) => {
+	themeManager.removeEventListener('change', func);
+};
+
+export const applyThemeFromJSON = (json) => {
+	const data =
+		typeof json === 'string' || json instanceof String
+			? JSON.parse(json)
+			: json;
+
+	if (!themeManager.getTheme(data.theme))
+		themeManager.addTheme(new Theme(data.theme));
+
+	data.components.forEach((componentTheme) => {
+		addComponentTheme(componentTheme.id, componentTheme.value, data.theme);
+	});
+};
+
+export const setCurrentTheme = themeManager.setCurrentTheme;

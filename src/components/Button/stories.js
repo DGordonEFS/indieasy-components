@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
-import Button from './Button';
+import Button from 'components/Button';
 import Text from 'components/Text';
 
 import { addComponentTheme } from 'theming';

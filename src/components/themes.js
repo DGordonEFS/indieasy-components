@@ -1,4 +1,4 @@
-import { addComponentTheme } from 'theming/theme';
+import { applyThemeFromJSON } from 'theming/theme';
 
 export const BUTTON = 'button';
 export const LIST_ITEM = 'list-item';
@@ -8,6 +8,7 @@ export const LIST_ITEM_RIGHT_CONTENT_TEXT = 'list-item-text-right-content';
 export const LIST_ITEM_BUTTON = 'list-item-button';
 export const LIST_ITEM_BUTTON_SELECTED = 'list-item-button-selected';
 export const LIST = 'list';
+export const PANEL = 'panel';
 export const SCROLL_PANE = 'scroll-pane';
 export const SPLIT_PANE = 'split-pane';
 export const SPLIT_PANE_SEPARATOR = 'split-pane-separator';
@@ -21,6 +22,8 @@ export const TOOL_BAR_ITEM = 'tool-bar-item';
 const THEME_DEFAULT = '_default';
 
 const colors = {
+	WHITE: 'white',
+	BLACK: 'black',
 	GRAY: 'gray',
 	LIGHT_GRAY: '#666666',
 	LIGHTER_GRAY: '#BBBBBB',
@@ -29,233 +32,418 @@ const colors = {
 	DARKEST_GRAY: '#252525',
 };
 
-addComponentTheme(
-	BUTTON,
-	{
-		backgroundColor: colors.GRAY,
-		border: '1px solid black',
-		color: 'white',
-		cursor: 'pointer',
-		':hover': {
-			backgroundColor: colors.LIGHTER_GRAY,
+const theme = {
+	theme: '_default',
+	components: [
+		{
+			id: BUTTON,
+			value: {
+				backgroundColor: colors.GRAY,
+				border: '1px solid black',
+				color: 'white',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+				},
+			},
 		},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM,
-	{
-		backgroundColor: colors.GRAY,
-		border: '1px solid black',
-		color: 'white',
-		padding: '5px',
-		cursor: 'pointer',
-		':hover': {
-			backgroundColor: colors.LIGHTER_GRAY,
-			color: 'black',
+		{
+			id: LIST_ITEM,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: colors.GRAY,
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
 		},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM_SELECTED,
-	{
-		backgroundColor: colors.DARKEST_GRAY,
-		border: '1px solid black',
-		color: 'white',
-		padding: '5px',
-		cursor: 'pointer',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM_TEXT,
-	{
-		userSelect: 'none',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM_RIGHT_CONTENT_TEXT,
-	{
-		marginRight: '15px',
-		userSelect: 'none',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM_BUTTON,
-	{
-		backgroundColor: 'transparent',
-		color: 'black',
-		marginLeft: '5px',
-		display: 'initial',
-		cursor: 'pointer',
-		fontSize: '0.8rem',
-		':hover': {
-			color: 'white',
+		{
+			id: LIST_ITEM_SELECTED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: colors.DARKEST_GRAY,
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+			},
 		},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST_ITEM_BUTTON_SELECTED,
-	{
-		backgroundColor: 'transparent',
-		color: 'white',
-		marginLeft: '5px',
-		display: 'initial',
-		cursor: 'pointer',
-		fontSize: '0.8rem',
-		':hover': {
-			color: 'white',
+		{
+			id: LIST_ITEM_TEXT,
+			value: {
+				userSelect: 'none',
+			},
 		},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	LIST,
-	{
-		backgroundColor: 'transparent',
-		border: '1px solid black',
-		color: 'white',
-		padding: '2px',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	SCROLL_PANE,
-	{
-		flexGrow: 1,
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	SPLIT_PANE,
-	{
-		flexGrow: 1,
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	SPLIT_PANE_SEPARATOR,
-	{
-		backgroundColor: colors.DARKER_GRAY,
-		border: '1px solid black',
-		boxSizing: 'border-box',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TAB_BAR,
-	{
-		backgroundColor: colors.DARKER_GRAY,
-		width: '100%',
-		height: '2rem',
-		display: 'flex',
-		alignItems: 'flex-end',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TAB_BAR_ITEM,
-	{
-		backgroundColor: colors.GRAY,
-		color: 'white',
-		display: 'flex',
-		border: '1px solid black',
-		borderTopLeftRadius: '5px',
-		borderTopRightRadius: '5px',
-		height: '40%',
-		paddingTop: '6px',
-		paddingLeft: '5px',
-		paddingRight: '5px',
-		paddingBottom: '2px',
-		userSelect: 'none',
-		boxSizing: 'border',
-		fontSize: '0.8rem',
-		cursor: 'pointer',
-		':hover': {
-			backgroundColor: colors.LIGHTER_GRAY,
-			color: 'black',
+		{
+			id: LIST_ITEM_RIGHT_CONTENT_TEXT,
+			value: {
+				marginRight: '15px',
+				userSelect: 'none',
+			},
 		},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TAB_BAR_ITEM_SELECTED,
-	{
-		backgroundColor: colors.DARKEST_GRAY,
-		color: 'white',
-		display: 'flex',
-		borderTop: '1px solid black',
-		borderLeft: '1px solid black',
-		borderRight: '1px solid black',
-		borderBottom: 'none',
-		borderTopLeftRadius: '5px',
-		borderTopRightRadius: '5px',
-		height: '70%',
-		paddingTop: '3px',
-		paddingLeft: '10px',
-		paddingRight: '10px',
-		userSelect: 'none',
-		boxSizing: 'border',
-		fontSize: '1.1rem',
-		cursor: 'pointer',
-		':hover': {},
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TEXT,
-	{
-		userSelect: 'none',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TOOL_BAR,
-	{
-		backgroundColor: colors.DARKER_GRAY,
-		padding: '2px',
-		paddingLeft: '5px',
-		width: '100%',
-		height: '2rem',
-	},
-	THEME_DEFAULT
-);
-
-addComponentTheme(
-	TOOL_BAR_ITEM,
-	{
-		backgroundColor: colors.DARKER_GRAY,
-		color: 'white',
-		fontSize: '1.2rem',
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-around',
-		paddingLeft: '5px',
-		paddingRight: '5px',
-		cursor: 'pointer',
-		':hover': {
-			backgroundColor: colors.LIGHTER_GRAY,
-			color: 'black',
+		{
+			id: LIST_ITEM_BUTTON,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'black',
+				marginLeft: '5px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+				':hover': {
+					color: 'white',
+				},
+			},
 		},
-	},
-	THEME_DEFAULT
-);
+		{
+			id: LIST_ITEM_BUTTON_SELECTED,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'white',
+				marginLeft: '5px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+				':hover': {
+					color: 'white',
+				},
+			},
+		},
+		{
+			id: LIST,
+			value: {
+				backgroundColor: 'transparent',
+				border: '1px solid black',
+				color: 'white',
+				padding: '2px',
+			},
+		},
+		{
+			id: PANEL,
+			value: {
+				backgroundColor: colors.DARKEST_GRAY,
+			},
+		},
+		{
+			id: SCROLL_PANE,
+			value: {},
+		},
+		{
+			id: SPLIT_PANE,
+			value: {},
+		},
+		{
+			id: SPLIT_PANE_SEPARATOR,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				boxSizing: 'border-box',
+			},
+		},
+		{
+			id: TAB_BAR,
+			value: {
+				backgroundColor: colors.LIGHT_GRAY,
+				width: '100%',
+				height: '2rem',
+				display: 'flex',
+				alignItems: 'center',
+				borderTop: '1px solid black',
+				borderBottom: '1px solid black',
+				boxSizing: 'boder-box',
+			},
+		},
+		{
+			id: TAB_BAR_ITEM,
+			value: {
+				backgroundColor: colors.LIGHT_GRAY,
+				color: 'white',
+				display: 'flex',
+				alignItems: 'center',
+				borderRight: '1px solid black',
+				height: '100%',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+				userSelect: 'none',
+				boxSizing: 'border',
+				fontSize: '0.8rem',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+		{
+			id: TAB_BAR_ITEM_SELECTED,
+			value: {
+				backgroundColor: colors.DARKEST_GRAY,
+				color: 'white',
+				display: 'flex',
+				alignItems: 'center',
+				borderRight: '1px solid black',
+				height: '100%',
+				paddingLeft: '10px',
+				paddingRight: '10px',
+				paddingBottom: '2px',
+				userSelect: 'none',
+				boxSizing: 'border',
+				fontSize: '1.2rem',
+				cursor: 'pointer',
+				marginBottom: '-1px',
+				verticalAlign: 'middle',
+				':hover': {},
+			},
+		},
+		{
+			id: TEXT,
+			value: {
+				userSelect: 'none',
+			},
+		},
+		{
+			id: TOOL_BAR,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				padding: '2px',
+				paddingLeft: '5px',
+				width: '100%',
+				height: '2rem',
+			},
+		},
+		{
+			id: TOOL_BAR_ITEM,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				color: 'white',
+				fontSize: '1.2rem',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-around',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+	],
+};
+
+applyThemeFromJSON(theme);
+
+const lightTheme = {
+	theme: 'light',
+	components: [
+		{
+			id: BUTTON,
+			value: {
+				backgroundColor: 'purple',
+				border: '1px solid black',
+				color: 'white',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+				},
+			},
+		},
+		{
+			id: LIST_ITEM,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: 'blue',
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+		{
+			id: LIST_ITEM_SELECTED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: colors.DARKEST_GRAY,
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+			},
+		},
+		{
+			id: LIST_ITEM_TEXT,
+			value: {
+				userSelect: 'none',
+			},
+		},
+		{
+			id: LIST_ITEM_RIGHT_CONTENT_TEXT,
+			value: {
+				marginRight: '15px',
+				userSelect: 'none',
+			},
+		},
+		{
+			id: LIST_ITEM_BUTTON,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'black',
+				marginLeft: '5px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+				':hover': {
+					color: 'white',
+				},
+			},
+		},
+		{
+			id: LIST_ITEM_BUTTON_SELECTED,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'white',
+				marginLeft: '5px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+				':hover': {
+					color: 'white',
+				},
+			},
+		},
+		{
+			id: LIST,
+			value: {
+				backgroundColor: 'transparent',
+				border: '1px solid black',
+				color: 'white',
+				padding: '2px',
+			},
+		},
+		{
+			id: PANEL,
+			value: {
+				backgroundColor: colors.WHITE,
+			},
+		},
+		{
+			id: SCROLL_PANE,
+			value: {},
+		},
+		{
+			id: SPLIT_PANE,
+			value: {},
+		},
+		{
+			id: SPLIT_PANE_SEPARATOR,
+			value: {
+				backgroundColor: 'purple',
+				boxSizing: 'border-box',
+			},
+		},
+		{
+			id: TAB_BAR,
+			value: {
+				backgroundColor: 'white',
+				width: '100%',
+				height: '2rem',
+				display: 'flex',
+				alignItems: 'center',
+				borderTop: '1px solid black',
+				borderBottom: '1px solid black',
+				boxSizing: 'boder-box',
+			},
+		},
+		{
+			id: TAB_BAR_ITEM,
+			value: {
+				backgroundColor: 'purple',
+				color: 'white',
+				display: 'flex',
+				alignItems: 'center',
+				borderRight: '1px solid black',
+				height: '100%',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+				userSelect: 'none',
+				boxSizing: 'border',
+				fontSize: '0.8rem',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+		{
+			id: TAB_BAR_ITEM_SELECTED,
+			value: {
+				backgroundColor: 'white',
+				color: 'purple',
+				display: 'flex',
+				alignItems: 'center',
+				borderRight: '1px solid black',
+				height: '100%',
+				paddingLeft: '10px',
+				paddingRight: '10px',
+				paddingBottom: '2px',
+				userSelect: 'none',
+				boxSizing: 'border',
+				fontSize: '1.2rem',
+				cursor: 'pointer',
+				marginBottom: '-1px',
+				verticalAlign: 'middle',
+				':hover': {},
+			},
+		},
+		{
+			id: TEXT,
+			value: {
+				userSelect: 'none',
+			},
+		},
+		{
+			id: TOOL_BAR,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				padding: '2px',
+				paddingLeft: '5px',
+				width: '100%',
+				height: '2rem',
+			},
+		},
+		{
+			id: TOOL_BAR_ITEM,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				color: 'white',
+				fontSize: '1.2rem',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-around',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+	],
+};
+
+applyThemeFromJSON(lightTheme);

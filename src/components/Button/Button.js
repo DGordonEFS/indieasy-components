@@ -1,38 +1,44 @@
 import React from 'react';
 import Radium from 'radium';
 
+import IndieasyComponent from 'components';
 import { createFinalStyle } from 'theming/theme';
 
 import * as themeIds from 'components/themes';
 
 // Components are functions, and they must start with a capital letter
-function Button(props) {
-	const onMouseUp = (e) => {
-		if (props.onClick) props.onClick(e);
-		if (props.onMouseUp) props.onMouseUp(e);
-	};
-	const onEnter = (e) => {
-		if (props.onMouseEnter) props.onMouseEnter(e);
-	};
-	const onLeave = (e) => {
-		if (props.onMouseLeave) props.onMouseLeave(e);
-	};
+class Button extends IndieasyComponent {
+	render() {
+		const onMouseUp = (e) => {
+			if (this.props.onClick) this.props.onClick(e);
+			if (this.props.onMouseUp) this.props.onMouseUp(e);
+		};
+		const onEnter = (e) => {
+			if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+		};
+		const onLeave = (e) => {
+			if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+		};
 
-	const style = createFinalStyle(themeIds.BUTTON, props, props.baseStyle);
+		const style = createFinalStyle(
+			themeIds.BUTTON,
+			this.props,
+			this.props.baseStyle
+		);
 
-	if (props.pointer) style.cursor = 'pointer';
+		if (this.props.pointer) style.cursor = 'pointer';
 
-	return (
-		<div
-			onMouseUp={onMouseUp}
-			onMouseEnter={onEnter}
-			onMouseLeave={onLeave}
-			style={style}
-		>
-			{props.children}
-		</div>
-	);
+		return (
+			<div
+				onMouseUp={onMouseUp}
+				onMouseEnter={onEnter}
+				onMouseLeave={onLeave}
+				style={style}
+			>
+				{this.props.children}
+			</div>
+		);
+	}
 }
-
 // This export will be picked up in ./index.js
 export default Radium(Button);

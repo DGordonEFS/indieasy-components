@@ -6,4 +6,7 @@ export {
 	addComponentTheme,
 	createFinalStyle,
 	createTheme,
+	listen,
+	unlisten,
+	setCurrentTheme,
 } from './theme';

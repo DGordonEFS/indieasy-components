@@ -1,17 +1,20 @@
 import React from 'react';
 
+import IndieasyComponent from 'components';
 import { createFinalStyle } from '../../theming/theme';
 
 import * as themeIds from 'components/themes';
 
-const Text = (props) => {
-	const style = createFinalStyle(themeIds.TEXT, props);
+class Text extends IndieasyComponent {
+	render() {
+		const style = createFinalStyle(themeIds.TEXT, this.props);
 
-	return (
-		<span {...props} style={style}>
-			{props.children}
-		</span>
-	);
-};
+		return (
+			<span {...this.props} style={style}>
+				{this.props.children}
+			</span>
+		);
+	}
+}
 
 export default Text;

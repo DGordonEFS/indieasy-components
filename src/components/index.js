@@ -4,3 +4,5 @@
 // different tech like TypeScript
 
 export { default as Button } from './Button';
+
+export { default } from './IndieasyComponent';

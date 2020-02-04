@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 
+import IndieasyComponent from 'components';
 import Button from 'components/Button';
 import Text from 'components/Text';
 
 import * as themeIds from 'components/themes';
 
-const ListItem = (props) => {
-	const theme = props.theme || themeIds.LIST_ITEM;
-	const textTheme = props.textTheme || themeIds.LIST_ITEM_TEXT;
-	const button = (
-		<Button
-			onClick={() => props.onSelect(props.data)}
-			{...props}
-			theme={theme}
-			baseStyle={{ ...props.baseStyle, ...props.data.style }}
-		>
-			<Text theme={textTheme}>{props.data.text}</Text>
-			{props.children}
-		</Button>
-	);
+class ListItem extends IndieasyComponent {
+	render() {
+		const theme = this.props.theme || themeIds.LIST_ITEM;
+		const textTheme = this.props.textTheme || themeIds.LIST_ITEM_TEXT;
+		const button = (
+			<Button
+				onClick={() => this.props.onSelect(this.props.data)}
+				{...this.props}
+				theme={theme}
+				baseStyle={{ ...this.props.baseStyle, ...this.props.data.style }}
+			>
+				<Text theme={textTheme}>{this.props.data.text}</Text>
+				{this.props.children}
+			</Button>
+		);
 
-	return button;
-};
+		return button;
+	}
+}
 
 export default ListItem;
 
@@ -41,7 +44,7 @@ export const ListItemRightContent = (props) => {
 	);
 };
 
-export class ListItemRightButton extends Component {
+export class ListItemRightButton extends IndieasyComponent {
 	state = { over: false };
 
 	mouseEnterHandler = (e) => {
@@ -80,11 +83,9 @@ export class ListItemRightButton extends Component {
 				onMouseEnter={this.mouseEnterHandler}
 				onMouseLeave={this.mouseLeaveHandler}
 			>
-				<div style={xStyle}>
-					<Button theme={buttonTheme}>
-						<Text>{rightButtonText}</Text>
-					</Button>
-				</div>
+				<Button baseStyle={xStyle} theme={buttonTheme}>
+					<Text>{rightButtonText}</Text>
+				</Button>
 			</ListItemRightContent>
 		);
 	}

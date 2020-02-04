@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
+import IndieasyComponent from 'components';
 import { createFinalStyle } from 'theming/theme';
 
 import * as themeIds from 'components/themes';
 
-class SplitPane extends Component {
+class SplitPane extends IndieasyComponent {
 	constructor(props) {
 		super(props);
 		let size = Math.max(props.minSize || 0, props.size || 0);
@@ -64,6 +65,7 @@ class SplitPane extends Component {
 			width: '100%',
 			height: '100%',
 			flex: 1,
+			flexGrow: 1,
 		};
 
 		if (this.props.vertical) baseStyle.flexDirection = 'column';
