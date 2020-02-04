@@ -54,9 +54,10 @@ storiesOf('SplitPane')
 			style={{
 				border: '1px solid black',
 				backgroundColor: 'gray',
-				height: '768px',
+				height: '100vh',
 				display: 'flex',
 				flexDirection: 'column',
+				boxSizing: 'border-box',
 			}}
 		>
 			<div
@@ -98,7 +99,26 @@ storiesOf('SplitPane')
 								}}
 							/>
 						</SplitPane>
-						<ControlledTabBar selectedIndex={selectedIndex} data={basicData} />
+						<div
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								width: '100%',
+								height: '100%',
+							}}
+						>
+							<ControlledTabBar
+								selectedIndex={selectedIndex}
+								data={basicData}
+							/>
+							<div
+								style={{
+									backgroundColor: '#252525',
+									width: '100%',
+									height: '100%',
+								}}
+							/>
+						</div>
 					</SplitPane>
 				</SplitPane>
 			</div>

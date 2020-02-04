@@ -96,6 +96,7 @@ addComponentTheme(
 		marginLeft: '5px',
 		display: 'initial',
 		cursor: 'pointer',
+		fontSize: '0.8rem',
 		':hover': {
 			color: 'white',
 		},
@@ -111,6 +112,7 @@ addComponentTheme(
 		marginLeft: '5px',
 		display: 'initial',
 		cursor: 'pointer',
+		fontSize: '0.8rem',
 		':hover': {
 			color: 'white',
 		},
@@ -161,7 +163,6 @@ addComponentTheme(
 		backgroundColor: colors.DARKER_GRAY,
 		width: '100%',
 		height: '2rem',
-		border: '1px solid black',
 		display: 'flex',
 		alignItems: 'flex-end',
 	},
