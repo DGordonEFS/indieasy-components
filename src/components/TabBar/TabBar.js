@@ -10,6 +10,8 @@ const TabBar = (props) => {
 	const selectedItemTheme =
 		props.selectedItemTheme || themeIds.TAB_BAR_ITEM_SELECTED;
 
+	let itemProps = props.itemProps || {};
+	itemProps = { alwaysShowButton: true, ...itemProps };
 	const list = (
 		<List
 			selectable
@@ -19,6 +21,7 @@ const TabBar = (props) => {
 			horizontal
 			theme={themeIds.TAB_BAR}
 			{...props}
+			itemProps={itemProps}
 		/>
 	);
 

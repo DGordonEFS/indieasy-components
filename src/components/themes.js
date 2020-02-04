@@ -9,6 +9,8 @@ export const LIST_ITEM_BUTTON = 'list-item-button';
 export const LIST_ITEM_BUTTON_SELECTED = 'list-item-button-selected';
 export const LIST = 'list';
 export const SCROLL_PANE = 'scroll-pane';
+export const SPLIT_PANE = 'split-pane';
+export const SPLIT_PANE_SEPARATOR = 'split-pane-separator';
 export const TAB_BAR = 'tab-bar';
 export const TAB_BAR_ITEM = 'tab-bar-item';
 export const TAB_BAR_ITEM_SELECTED = 'tab-bar-item-selected';
@@ -136,6 +138,24 @@ addComponentTheme(
 );
 
 addComponentTheme(
+	SPLIT_PANE,
+	{
+		flexGrow: 1,
+	},
+	THEME_DEFAULT
+);
+
+addComponentTheme(
+	SPLIT_PANE_SEPARATOR,
+	{
+		backgroundColor: colors.DARKER_GRAY,
+		border: '1px solid black',
+		boxSizing: 'border-box',
+	},
+	THEME_DEFAULT
+);
+
+addComponentTheme(
 	TAB_BAR,
 	{
 		backgroundColor: colors.DARKER_GRAY,
@@ -194,6 +214,7 @@ addComponentTheme(
 		boxSizing: 'border',
 		fontSize: '1.1rem',
 		cursor: 'pointer',
+		':hover': {},
 	},
 	THEME_DEFAULT
 );

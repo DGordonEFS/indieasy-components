@@ -56,7 +56,8 @@ export class ListItemRightButton extends Component {
 		const xStyle =
 			!this.state.over &&
 			!this.props.rightText &&
-			(!this.props.selected || !this.props.rightSelectedText)
+			(!this.props.selected || !this.props.rightSelectedText) &&
+			!this.props.alwaysShowButton
 				? { visibility: 'hidden' }
 				: null;
 
