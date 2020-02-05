@@ -7,12 +7,26 @@ import Text from 'components/Text';
 import * as themeIds from 'components/themes';
 
 class ListItem extends IndieasyComponent {
+	clickHandler = () => {
+		if (this.props.onSelect) this.props.onSelect(this.props.data);
+	};
+
+	mouseEnterHandler = () => {
+		if (this.props.onItemEnter) this.props.onItemEnter(this.props.data);
+	};
+
+	mouseLeaveHandler = () => {
+		if (this.props.onItemLeave) this.props.onItemLeave(this.props.data);
+	};
+
 	render() {
 		const theme = this.props.theme || themeIds.LIST_ITEM;
 		const textTheme = this.props.textTheme || themeIds.LIST_ITEM_TEXT;
 		const button = (
 			<Button
-				onClick={() => this.props.onSelect(this.props.data)}
+				onClick={this.clickHandler}
+				onMouseEnter={this.mouseEnterHandler}
+				onMouseLeave={this.mouseLeaveHandler}
 				{...this.props}
 				theme={theme}
 				baseStyle={{ ...this.props.baseStyle, ...this.props.data.style }}
@@ -31,13 +45,13 @@ export default ListItem;
 export const ListItemRightContent = (props) => {
 	return (
 		<ListItem
-			{...props}
 			textTheme={themeIds.LIST_ITEM_RIGHT_CONTENT_TEXT}
 			baseStyle={{
 				display: 'flex',
 				justifyContent: 'space-between',
 				...props.baseStyle,
 			}}
+			{...props}
 		>
 			{props.children}
 		</ListItem>
@@ -49,10 +63,12 @@ export class ListItemRightButton extends IndieasyComponent {
 
 	mouseEnterHandler = (e) => {
 		this.setState({ over: true });
+		if (this.props.onItemEnter) this.props.onItemEnter(this.props.data);
 	};
 
 	mouseLeaveHandler = (e) => {
 		this.setState({ over: false });
+		if (this.props.onItemLeave) this.props.onItemLeave(this.props.data);
 	};
 
 	render() {
@@ -74,14 +90,14 @@ export class ListItemRightButton extends IndieasyComponent {
 			this.props.selected &&
 			this.props.rightOverText != this.props.rightSelectedText &&
 			!this.state.over
-				? themeIds.LIST_ITEM_BUTTON_SELECTED
-				: themeIds.LIST_ITEM_BUTTON;
+				? this.props.buttonSelectedTheme || themeIds.LIST_ITEM_BUTTON_SELECTED
+				: this.props.buttonTheme || themeIds.LIST_ITEM_BUTTON;
 
 		return (
 			<ListItemRightContent
 				{...this.props}
-				onMouseEnter={this.mouseEnterHandler}
-				onMouseLeave={this.mouseLeaveHandler}
+				onItemEnter={this.mouseEnterHandler}
+				onItemLeave={this.mouseLeaveHandler}
 			>
 				<Button baseStyle={xStyle} theme={buttonTheme}>
 					<Text>{rightButtonText}</Text>

@@ -1,5 +1,1 @@
-export {
-	default as ListItem,
-	ListItemRightContent,
-	ListItemRightButton,
-} from './ListItem';
+export { default, ListItemRightContent, ListItemRightButton } from './ListItem';

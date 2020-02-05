@@ -1,13 +1,21 @@
 import { applyThemeFromJSON } from 'theming/theme';
 
 export const BUTTON = 'button';
+export const DIVIDER = 'divider';
 export const LIST_ITEM = 'list-item';
+export const LIST_ITEM_DISABLED = 'list-item-disabled';
 export const LIST_ITEM_SELECTED = 'list-item-selected';
 export const LIST_ITEM_TEXT = 'list-item-text';
 export const LIST_ITEM_RIGHT_CONTENT_TEXT = 'list-item-text-right-content';
 export const LIST_ITEM_BUTTON = 'list-item-button';
 export const LIST_ITEM_BUTTON_SELECTED = 'list-item-button-selected';
 export const LIST = 'list';
+export const MENU = 'menu';
+export const MENU_ITEM = 'menu-item';
+export const MENU_ITEM_DISABLED = 'menu-item-disabled';
+export const MENU_ITEM_SELECTED = 'menu-item-selected';
+export const MENU_ITEM_BUTTON = 'menu-item-button';
+export const MENU_ITEM_BUTTON_SELECTED = 'menu-item-button-selected';
 export const PANEL = 'panel';
 export const SCROLL_PANE = 'scroll-pane';
 export const SPLIT_PANE = 'split-pane';
@@ -48,13 +56,50 @@ const theme = {
 			},
 		},
 		{
+			id: DIVIDER,
+			value: {
+				width: '90%',
+				height: '1px',
+				backgroundColor: 'gray',
+				marginLeft: 'auto',
+				marginRight: 'auto',
+			},
+		},
+		{
+			id: LIST,
+			value: {
+				backgroundColor: 'transparent',
+				border: '1px solid black',
+				color: 'white',
+				padding: '2px',
+			},
+		},
+		{
 			id: LIST_ITEM,
 			value: {
 				display: 'flex',
 				alignItems: 'center',
-				backgroundColor: colors.GRAY,
+				justifyContent: 'space-between',
+				backgroundColor: colors.DARK_GRAY,
 				border: '1px solid black',
 				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+		{
+			id: LIST_ITEM_DISABLED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+				backgroundColor: colors.DARK_GRAY,
+				border: '1px solid black',
+				color: 'gray',
 				padding: '5px',
 				cursor: 'pointer',
 				':hover': {
@@ -68,6 +113,7 @@ const theme = {
 			value: {
 				display: 'flex',
 				alignItems: 'center',
+				justifyContent: 'space-between',
 				backgroundColor: colors.DARKEST_GRAY,
 				border: '1px solid black',
 				color: 'white',
@@ -117,18 +163,88 @@ const theme = {
 			},
 		},
 		{
-			id: LIST,
-			value: {
-				backgroundColor: 'transparent',
-				border: '1px solid black',
-				color: 'white',
-				padding: '2px',
-			},
-		},
-		{
 			id: PANEL,
 			value: {
 				backgroundColor: colors.DARKEST_GRAY,
+			},
+		},
+		{
+			id: MENU,
+			value: {
+				position: 'absolute',
+				backgroundColor: colors.DARKEST_GRAY,
+				border: '1px solid black',
+				color: 'white',
+				boxSizing: 'border-box',
+				filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, 0.5))',
+				padding: '5px',
+			},
+		},
+		{
+			id: MENU_ITEM,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+				backgroundColor: colors.DARKEST_GRAY,
+				color: 'white',
+				paddingTop: '4px',
+				paddingBottom: '4px',
+				paddingLeft: '20px',
+				paddingRight: '10px',
+			},
+		},
+		{
+			id: MENU_ITEM_DISABLED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+				backgroundColor: colors.DARKEST_GRAY,
+				color: 'gray',
+				paddingTop: '4px',
+				paddingBottom: '4px',
+				paddingLeft: '20px',
+				paddingRight: '10px',
+			},
+		},
+		{
+			id: MENU_ITEM_SELECTED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'space-between',
+				backgroundColor: colors.DARKER_GRAY,
+				color: 'white',
+				paddingTop: '4px',
+				paddingBottom: '4px',
+				paddingLeft: '20px',
+				paddingRight: '10px',
+			},
+		},
+		{
+			id: MENU_ITEM_BUTTON,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'white',
+				marginLeft: '15px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+			},
+		},
+		{
+			id: MENU_ITEM_BUTTON_SELECTED,
+			value: {
+				backgroundColor: 'transparent',
+				color: 'black',
+				marginLeft: '5px',
+				display: 'initial',
+				cursor: 'pointer',
+				fontSize: '0.8rem',
+				':hover': {
+					color: 'white',
+				},
 			},
 		},
 		{
@@ -228,7 +344,6 @@ const theme = {
 				justifyContent: 'space-around',
 				paddingLeft: '5px',
 				paddingRight: '5px',
-				cursor: 'pointer',
 				':hover': {
 					backgroundColor: colors.LIGHTER_GRAY,
 					color: 'black',
@@ -253,6 +368,15 @@ const lightTheme = {
 				':hover': {
 					backgroundColor: colors.LIGHTER_GRAY,
 				},
+			},
+		},
+		{
+			id: LIST,
+			value: {
+				backgroundColor: 'transparent',
+				border: '1px solid black',
+				color: 'white',
+				padding: '2px',
 			},
 		},
 		{
@@ -325,12 +449,40 @@ const lightTheme = {
 			},
 		},
 		{
-			id: LIST,
+			id: MENU,
 			value: {
-				backgroundColor: 'transparent',
+				backgroundColor: 'white',
 				border: '1px solid black',
 				color: 'white',
 				padding: '2px',
+			},
+		},
+		{
+			id: MENU_ITEM,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: 'purple',
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
+				':hover': {
+					backgroundColor: colors.LIGHTER_GRAY,
+					color: 'black',
+				},
+			},
+		},
+		{
+			id: MENU_ITEM_SELECTED,
+			value: {
+				display: 'flex',
+				alignItems: 'center',
+				backgroundColor: 'purple',
+				border: '1px solid black',
+				color: 'white',
+				padding: '5px',
+				cursor: 'pointer',
 			},
 		},
 		{

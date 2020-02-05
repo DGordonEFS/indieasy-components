@@ -47,7 +47,7 @@ export class ControlledTabBar extends IndieasyComponent {
 			<TabBar
 				{...this.props}
 				selectedIndex={this.state.selectedIndex}
-				onSelectItem={this.selectItemHandler}
+				onItemSelect={this.selectItemHandler}
 			/>
 		);
 	}
