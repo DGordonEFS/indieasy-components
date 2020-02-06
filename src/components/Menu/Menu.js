@@ -13,7 +13,7 @@ class Menu extends IndieasyComponent {
 	state = { overItem: null };
 
 	selectedItemHandler = (item) => {
-		console.log(item);
+		//console.log(item);
 		if (this.props.onItemSelect) this.props.onItemSelect(item);
 	};
 
@@ -70,6 +70,7 @@ class Menu extends IndieasyComponent {
 							<Menu
 								baseStyle={{ marginLeft: '-1px', marginTop: '-1px' }}
 								data={item.data}
+								onItemSelect={this.selectedItemHandler}
 							/>
 						</div>
 					);

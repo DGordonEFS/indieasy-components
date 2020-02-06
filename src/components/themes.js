@@ -26,6 +26,9 @@ export const TAB_BAR_ITEM_SELECTED = 'tab-bar-item-selected';
 export const TEXT = 'text';
 export const TOOL_BAR = 'tool-bar';
 export const TOOL_BAR_ITEM = 'tool-bar-item';
+export const TOOL_BAR_ITEM_SELECTED = 'tool-bar-item-selected';
+export const TOOL_BAR_ITEM_ACTIVE = 'tool-bar-item-active';
+export const TOOL_BAR_ITEM_DISABLED = 'tool-bar-item-disabled';
 
 const THEME_DEFAULT = '_default';
 
@@ -327,7 +330,6 @@ const theme = {
 			id: TOOL_BAR,
 			value: {
 				backgroundColor: colors.DARKER_GRAY,
-				padding: '2px',
 				paddingLeft: '5px',
 				width: '100%',
 				height: '2rem',
@@ -344,10 +346,46 @@ const theme = {
 				justifyContent: 'space-around',
 				paddingLeft: '5px',
 				paddingRight: '5px',
-				':hover': {
-					backgroundColor: colors.LIGHTER_GRAY,
-					color: 'black',
-				},
+			},
+		},
+		{
+			id: TOOL_BAR_ITEM_SELECTED,
+			value: {
+				backgroundColor: colors.LIGHTER_GRAY,
+				color: 'white',
+				fontSize: '1.2rem',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-around',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+			},
+		},
+		{
+			id: TOOL_BAR_ITEM_ACTIVE,
+			value: {
+				backgroundColor: colors.LIGHTER_GRAY,
+				color: 'white',
+				fontSize: '1.2rem',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-around',
+				paddingLeft: '5px',
+				paddingRight: '5px',
+				paddingTop: '4px',
+			},
+		},
+		{
+			id: TOOL_BAR_ITEM_DISABLED,
+			value: {
+				backgroundColor: colors.DARKER_GRAY,
+				color: 'gray',
+				fontSize: '1.2rem',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-around',
+				paddingLeft: '5px',
+				paddingRight: '5px',
 			},
 		},
 	],

@@ -8,6 +8,14 @@ import * as themeIds from 'components/themes';
 import ListItem from '../ListItem';
 
 class List extends IndieasyComponent {
+	mouseLeaveHandler = (e) => {
+		if (this.props.onMouseLeave) this.props.onMouseLeave(e);
+	};
+
+	mouseEnterHandler = (e) => {
+		if (this.props.onMouseEnter) this.props.onMouseEnter(e);
+	};
+
 	render() {
 		const itemProps = this.props.itemProps || {};
 		if (this.props.pointer) {
@@ -35,13 +43,19 @@ class List extends IndieasyComponent {
 				item.key = item.text + '_' + item.divider + '_' + item.disabled;
 			}
 
-			let theme = this.props.itemTheme || themeIds.LIST_ITEM;
+			let theme = item.theme || this.props.itemTheme || themeIds.LIST_ITEM;
 			const selected = this.props.selectedIndex == index;
 			if (item.disabled) {
-				theme = this.props.disabledItemTheme || themeIds.LIST_ITEM_DISABLED;
+				theme =
+					item.disabledTheme ||
+					this.props.disabledItemTheme ||
+					themeIds.LIST_ITEM_DISABLED;
 			} else if (this.props.selectable) {
 				if (selected)
-					theme = this.props.selectedItemTheme || themeIds.LIST_ITEM_SELECTED;
+					theme =
+						item.selectedTheme ||
+						this.props.selectedItemTheme ||
+						themeIds.LIST_ITEM_SELECTED;
 			}
 
 			let Renderer = this.props.renderer || item.renderer || ListItem;
@@ -69,7 +83,15 @@ class List extends IndieasyComponent {
 
 		const finalStyle = createFinalStyle(themeIds.LIST, this.props, style);
 
-		return <div style={finalStyle}>{items}</div>;
+		return (
+			<div
+				style={finalStyle}
+				onMouseEnter={this.mouseEnterHandler}
+				onMouseLeave={this.mouseLeaveHandler}
+			>
+				{items}
+			</div>
+		);
 	}
 }
 
