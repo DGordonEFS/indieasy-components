@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import IndieasyComponent from 'components';
 import Button from 'components/Button';

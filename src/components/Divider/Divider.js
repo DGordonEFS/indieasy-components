@@ -1,11 +1,10 @@
 import React from 'react';
 import IndieasyComponent from 'components';
-import { createFinalStyle } from 'theming';
 import * as themeIds from 'components/themes';
 
 class Divider extends IndieasyComponent {
 	render() {
-		const style = createFinalStyle(
+		const style = this.createStyle(
 			themeIds.DIVIDER,
 			this.props,
 			this.props.baseStyle

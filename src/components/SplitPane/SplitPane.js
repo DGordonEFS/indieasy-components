@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import IndieasyComponent from 'components';
-import { createFinalStyle } from 'theming/theme';
 
 import * as themeIds from 'components/themes';
 
@@ -70,7 +69,7 @@ class SplitPane extends IndieasyComponent {
 
 		if (this.props.vertical) baseStyle.flexDirection = 'column';
 
-		const style = createFinalStyle(themeIds.SPLIT_PANE, this.props, baseStyle);
+		const style = this.createStyle(themeIds.SPLIT_PANE, this.props, baseStyle);
 
 		const separatorThickness = this.props.separatorThickness || '5px';
 
@@ -84,7 +83,7 @@ class SplitPane extends IndieasyComponent {
 			separatorSizingStyle.height = '100%';
 			separatorSizingStyle.width = separatorThickness;
 		}
-		let separatorStyle = createFinalStyle(
+		let separatorStyle = this.createStyle(
 			themeIds.SPLIT_PANE_SEPARATOR,
 			this.props.separatorProps || {}
 		);

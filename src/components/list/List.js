@@ -1,8 +1,6 @@
 import React from 'react';
 
 import IndieasyComponent from 'components';
-import { createFinalStyle } from '../../theming/theme';
-
 import * as themeIds from 'components/themes';
 
 import ListItem from '../ListItem';
@@ -81,7 +79,7 @@ class List extends IndieasyComponent {
 			flexDirection: this.props.horizontal ? 'row' : 'column',
 		};
 
-		const finalStyle = createFinalStyle(themeIds.LIST, this.props, style);
+		const finalStyle = this.createStyle(themeIds.LIST, this.props, style);
 
 		return (
 			<div

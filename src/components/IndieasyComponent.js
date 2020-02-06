@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
-import { listen, unlisten } from 'theming';
+import { createFinalStyle, listen, unlisten } from 'theming';
 
 class IndieasyComponent extends Component {
+	createStyle = (defaultTheme, props, baseStyle) => {
+		return createFinalStyle(defaultTheme, props, baseStyle);
+	};
+
 	callForceUpdate = () => {
 		this.forceUpdate();
 	};

@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 
 import IndieasyComponent from 'components';
-import { createFinalStyle } from 'theming/theme';
 
 import * as themeIds from 'components/themes';
 
@@ -20,7 +19,7 @@ class Button extends IndieasyComponent {
 			if (this.props.onMouseLeave) this.props.onMouseLeave(e);
 		};
 
-		const style = createFinalStyle(
+		const style = this.createStyle(
 			themeIds.BUTTON,
 			this.props,
 			this.props.baseStyle

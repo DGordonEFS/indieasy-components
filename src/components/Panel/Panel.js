@@ -2,12 +2,11 @@ import React from 'react';
 import Radium from 'radium';
 
 import IndieasyComponent from 'components';
-import { createFinalStyle } from 'theming/theme';
 import * as themeIds from 'components/themes';
 
 class Panel extends IndieasyComponent {
 	render() {
-		const style = createFinalStyle(
+		const style = this.createStyle(
 			themeIds.PANEL,
 			this.props,
 			this.props.baseStyle

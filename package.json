@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Core components for Indieasy.",
   "main": "build/index.js",
   "scripts": {
@@ -36,7 +36,6 @@
     "@storybook/react": "^5.3.10",
     "@tulipjs/eslint-config": "^1.1.1",
     "babel-cli": "^6.26.0",
-    "babel-core": "^7.8.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
