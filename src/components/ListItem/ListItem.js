@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IndieasyComponent from 'components';
+import { IndieasyComponent } from 'components';
 import Button from 'components/Button';
 import Text from 'components/Text';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import IndieasyComponent from 'components';
+import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
 class Panel extends IndieasyComponent {

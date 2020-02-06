@@ -1,12 +1,11 @@
 import React from 'react';
 
-import IndieasyComponent from 'components';
+import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
 import Divider from 'components/Divider';
 import List from 'components/List';
 import ListItem, { ListItemRightButton } from 'components/ListItem';
-import { createFinalStyle } from '../../theming';
 
 class Menu extends IndieasyComponent {
 	state = { overItem: null };

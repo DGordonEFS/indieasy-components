@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IndieasyComponent from 'components';
+import { IndieasyComponent } from 'components';
 
 import * as themeIds from 'components/themes';
 

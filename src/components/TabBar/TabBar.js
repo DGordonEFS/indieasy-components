@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import IndieasyComponent from 'components';
+import { IndieasyComponent } from 'components';
 import List from 'components/List';
 import { ListItemRightButton } from 'components/ListItem';
 
