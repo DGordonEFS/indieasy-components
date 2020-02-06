@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
-import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
 import Divider from 'components/Divider';
 import List from 'components/List';
 import ListItem, { ListItemRightButton } from 'components/ListItem';
 
-class Menu extends IndieasyComponent {
+class Menu extends Component {
 	state = { overItem: null };
 
 	selectedItemHandler = (item) => {
@@ -105,4 +105,4 @@ class Menu extends IndieasyComponent {
 	}
 }
 
-export default Menu;
+export default themeComponent(Menu);

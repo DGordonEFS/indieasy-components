@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Radium from 'radium';
 
-import { IndieasyComponent } from 'components';
+import { themeComponent } from 'theming';
 
 import * as themeIds from 'components/themes';
 
 // Components are functions, and they must start with a capital letter
-class Button extends IndieasyComponent {
+class Button extends Component {
+	test = () => {
+		return 'hello';
+	};
 	render() {
 		const onMouseUp = (e) => {
 			if (this.props.onClick) this.props.onClick(e);
@@ -39,5 +42,6 @@ class Button extends IndieasyComponent {
 		);
 	}
 }
+
 // This export will be picked up in ./index.js
-export default Radium(Button);
+export default Radium(themeComponent(Button));

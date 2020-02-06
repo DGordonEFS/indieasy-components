@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
-import { IndieasyComponent } from 'components';
 import List from 'components/List';
 import { ListItemRightButton } from 'components/ListItem';
 
 import * as themeIds from 'components/themes';
 
-class TabBar extends IndieasyComponent {
+class TabBar extends Component {
 	render() {
 		const itemTheme = this.props.itemTheme || themeIds.TAB_BAR_ITEM;
 		const selectedItemTheme =
@@ -31,9 +31,9 @@ class TabBar extends IndieasyComponent {
 	}
 }
 
-export default TabBar;
+export default themeComponent(TabBar);
 
-export class ControlledTabBar extends IndieasyComponent {
+export class controlledTabBar extends Component {
 	state = { selectedIndex: 0 };
 
 	selectItemHandler = (item) => {
@@ -52,3 +52,5 @@ export class ControlledTabBar extends IndieasyComponent {
 		);
 	}
 }
+
+export const ControlledTabBar = themeComponent(controlledTabBar);

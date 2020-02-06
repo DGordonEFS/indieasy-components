@@ -1,10 +1,9 @@
-import React from 'react';
-
-import { IndieasyComponent } from 'components';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
 import * as themeIds from 'components/themes';
 
-class Text extends IndieasyComponent {
+class Text extends Component {
 	render() {
 		const style = this.createStyle(themeIds.TEXT, this.props);
 
@@ -16,4 +15,4 @@ class Text extends IndieasyComponent {
 	}
 }
 
-export default Text;
+export default themeComponent(Text);

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
-import { IndieasyComponent } from 'components';
+import { themeComponent } from 'theming';
 
 import * as themeIds from 'components/themes';
 
-class SplitPane extends IndieasyComponent {
+class SplitPane extends Component {
 	constructor(props) {
 		super(props);
 		let size = Math.max(props.minSize || 0, props.size || 0);
@@ -153,4 +152,4 @@ class SplitPane extends IndieasyComponent {
 	}
 }
 
-export default SplitPane;
+export default themeComponent(SplitPane);

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
-import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
 import ListItem from '../ListItem';
 
-class List extends IndieasyComponent {
+class List extends Component {
 	mouseLeaveHandler = (e) => {
 		if (this.props.onMouseLeave) this.props.onMouseLeave(e);
 	};
@@ -93,4 +93,4 @@ class List extends IndieasyComponent {
 	}
 }
 
-export default List;
+export default themeComponent(List);

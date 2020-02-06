@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
-import { IndieasyComponent } from 'components';
 import Button from 'components/Button';
 import Text from 'components/Text';
 
 import * as themeIds from 'components/themes';
 
-class ListItem extends IndieasyComponent {
+class ListItem extends Component {
 	clickHandler = () => {
 		if (this.props.onSelect) this.props.onSelect(this.props.data);
 	};
@@ -40,7 +40,7 @@ class ListItem extends IndieasyComponent {
 	}
 }
 
-export default ListItem;
+export default themeComponent(ListItem);
 
 export const ListItemRightContent = (props) => {
 	return (
@@ -58,7 +58,7 @@ export const ListItemRightContent = (props) => {
 	);
 };
 
-export class ListItemRightButton extends IndieasyComponent {
+class listItemRightButton extends Component {
 	state = { over: false };
 
 	mouseEnterHandler = (e) => {
@@ -106,3 +106,5 @@ export class ListItemRightButton extends IndieasyComponent {
 		);
 	}
 }
+
+export const ListItemRightButton = themeComponent(listItemRightButton);

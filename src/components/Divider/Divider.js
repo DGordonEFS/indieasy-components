@@ -1,8 +1,8 @@
-import React from 'react';
-import { IndieasyComponent } from 'components';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 import * as themeIds from 'components/themes';
 
-class Divider extends IndieasyComponent {
+class Divider extends Component {
 	render() {
 		const style = this.createStyle(
 			themeIds.DIVIDER,
@@ -14,4 +14,4 @@ class Divider extends IndieasyComponent {
 	}
 }
 
-export default Divider;
+export default themeComponent(Divider);

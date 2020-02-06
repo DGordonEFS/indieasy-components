@@ -9,4 +9,5 @@ export {
 	listen,
 	unlisten,
 	setCurrentTheme,
+	themeComponent,
 } from './theme';

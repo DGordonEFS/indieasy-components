@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { IndieasyComponent } from 'components';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
 import List from 'components/List';
 import ListItem from 'components/ListItem';
@@ -8,7 +7,7 @@ import Menu from 'components/Menu';
 
 import * as themeIds from 'components/themes';
 
-class Toolbar extends IndieasyComponent {
+class Toolbar extends Component {
 	state = { active: false, item: null };
 
 	wasMenuClicked = false;
@@ -90,4 +89,4 @@ class Toolbar extends IndieasyComponent {
 	}
 }
 
-export default Toolbar;
+export default themeComponent(Toolbar);

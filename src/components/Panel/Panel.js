@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
+
 import Radium from 'radium';
 
-import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
-class Panel extends IndieasyComponent {
+class Panel extends Component {
 	render() {
 		const style = this.createStyle(
 			themeIds.PANEL,
@@ -16,4 +17,4 @@ class Panel extends IndieasyComponent {
 	}
 }
 
-export default Radium(Panel);
+export default Radium(themeComponent(Panel));

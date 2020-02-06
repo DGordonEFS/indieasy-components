@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 const mouseStateContext = React.createContext();
 
-export class MouseState extends Component {
+export default class MouseState extends Component {
 	state = { mouseState: 'up' };
 
 	mouseEnterHandler = () => {

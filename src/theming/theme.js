@@ -136,3 +136,20 @@ export const applyThemeFromJSON = (json) => {
 };
 
 export const setCurrentTheme = themeManager.setCurrentTheme;
+
+export const themeComponent = (component) => {
+	component.prototype.createStyle = (defaultTheme, props, baseStyle) => {
+		return createFinalStyle(defaultTheme, props, baseStyle);
+	};
+
+	component.prototype.componentDidMount = function() {
+		this.callForceUpdate = () => this.forceUpdate();
+		listen(this.callForceUpdate);
+	};
+
+	component.prototype.componentWillUnmount = function() {
+		unlisten(this.callForceUpdate);
+	};
+
+	return component;
+};

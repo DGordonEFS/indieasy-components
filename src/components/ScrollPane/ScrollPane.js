@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { themeComponent } from 'theming';
 
-import { IndieasyComponent } from 'components';
 import * as themeIds from 'components/themes';
 
-class ScrollPane extends IndieasyComponent {
+class ScrollPane extends Component {
 	render() {
 		const baseStyle = { flexGrow: 1 };
 
@@ -15,4 +15,4 @@ class ScrollPane extends IndieasyComponent {
 	}
 }
 
-export default ScrollPane;
+export default themeComponent(ScrollPane);
