@@ -3,7 +3,7 @@
 // allows for simpler scaling when your library grows in size, and even adds
 // different tech like TypeScript
 
-export { default } from './IndieasyComponent';
+export { default as IndieasyComponent } from './IndieasyComponent';
 
 export { default as Button } from './Button';
 export { default as List } from './List';
