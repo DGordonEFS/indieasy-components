@@ -3,22 +3,22 @@ import React, { Component } from 'react';
 const mouseStateContext = React.createContext();
 
 export default class MouseState extends Component {
-	state = { mouseState: 'up' };
+	state = { mouseState: 'mouseUp' };
 
 	mouseEnterHandler = () => {
-		this.setState({ mouseState: 'over' });
+		this.setState({ mouseState: 'mouseOver' });
 	};
 
 	mouseLeaveHandler = () => {
-		this.setState({ mouseState: 'up' });
+		this.setState({ mouseState: 'mouseUp' });
 	};
 
 	mouseDownHandler = () => {
-		this.setState({ mouseState: 'down' });
+		this.setState({ mouseState: 'mouseDown' });
 	};
 
 	mouseUpHandler = () => {
-		this.setState({ mouseState: 'up' });
+		this.setState({ mouseState: 'mouseUp' });
 	};
 
 	render() {
