@@ -81,7 +81,11 @@ export class Theme {
 	};
 
 	getComponent = (id) => {
-		return this.components[id];
+		try {
+			return this.components[id];
+		} catch (error) {
+			throw `Cannot find component ${id} in theme ${this.id}`;
+		}
 	};
 }
 

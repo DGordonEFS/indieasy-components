@@ -3,6 +3,8 @@
 // allows for simpler scaling when your library grows in size, and even adds
 // different tech like TypeScript
 
+import * as componentIds from './themes';
+
 export { default as IndieasyComponent } from './IndieasyComponent';
 
 export { default as Button } from './Button';
@@ -19,3 +21,5 @@ export { default as SplitPane } from './SplitPane';
 export { default as TabBar } from './TabBar';
 export { default as Text } from './Text';
 export { default as Toolbar } from './Toolbar';
+
+export { componentIds };

@@ -10,4 +10,5 @@ export {
 	unlisten,
 	setCurrentTheme,
 	themeComponent,
+	applyThemeFromJSON,
 } from './theme';

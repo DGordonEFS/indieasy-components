@@ -8,9 +8,9 @@ class Text extends Component {
 		const style = this.createStyle(themeIds.TEXT, this.props);
 
 		return (
-			<span {...this.props} style={style}>
+			<div {...this.props} style={style}>
 				{this.props.children}
-			</span>
+			</div>
 		);
 	}
 }
