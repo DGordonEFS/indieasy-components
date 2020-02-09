@@ -66,6 +66,7 @@ class Menu extends Component {
 						<div style={{ display: 'flex' }}>
 							<ItemRenderer {...props} />
 							<Menu
+								theme={themeIds.MENU_SUB}
 								baseStyle={{ marginLeft: '-1px', marginTop: '-1px' }}
 								data={item.data}
 								onItemSelect={this.selectedItemHandler}

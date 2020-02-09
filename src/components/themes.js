@@ -11,6 +11,7 @@ export const LIST_ITEM_BUTTON = 'list-item-button';
 export const LIST_ITEM_BUTTON_SELECTED = 'list-item-button-selected';
 export const LIST = 'list';
 export const MENU = 'menu';
+export const MENU_SUB = 'menu-sub';
 export const MENU_ITEM = 'menu-item';
 export const MENU_ITEM_DISABLED = 'menu-item-disabled';
 export const MENU_ITEM_SELECTED = 'menu-item-selected';
@@ -180,6 +181,17 @@ const theme = {
 				color: 'white',
 				boxSizing: 'border-box',
 				filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, 0.5))',
+				padding: '5px',
+			},
+		},
+		{
+			id: MENU_SUB,
+			value: {
+				position: 'absolute',
+				backgroundColor: colors.DARKEST_GRAY,
+				border: '1px solid black',
+				color: 'white',
+				boxSizing: 'border-box',
 				padding: '5px',
 			},
 		},
