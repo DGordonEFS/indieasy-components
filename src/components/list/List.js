@@ -1,96 +1,118 @@
-import React, { Component } from 'react';
-import { themeComponent } from 'theming';
+import React from 'react';
 
-import * as themeIds from 'components/themes';
+import { withSelectIndex } from '../../hoc/withSelectIndex';
+import { withTheming } from '../../hoc/withTheming';
 
-import ListItem from '../ListItem';
+export const defaultClassNames = {
+  LIST: 'list',
+  ITEM: 'item',
+  ENTERED: 'entered',
+  SELECTED: 'selected',
+  ODD: 'odd',
+  EVEN: 'even'
+};
 
-class List extends Component {
-	mouseLeaveHandler = (e) => {
-		if (this.props.onMouseLeave) this.props.onMouseLeave(e);
-	};
+const ListItem = props => {
+  const classNames = props.classNames || defaultClassNames;
 
-	mouseEnterHandler = (e) => {
-		if (this.props.onMouseEnter) this.props.onMouseEnter(e);
-	};
+  const classes = [props.css[classNames.ITEM]];
+  if (props.index % 2 !== 0) classes.push(props.css[classNames.ODD]);
+  else classes.push(props.css[classNames.EVEN]);
+  if (props.entered) classes.push(props.css[classNames.ENTERED]);
+  if (props.selected) classes.push(props.css[classNames.SELECTED]);
 
-	render() {
-		const itemProps = this.props.itemProps || {};
-		if (this.props.pointer) {
-			itemProps.pointer = true;
-		}
+  return (
+    <div {...props.itemProps} className={classes.join(' ')}>
+      {props.data.text}
+    </div>
+  );
+};
 
-		const itemBaseStyle = this.props.itemStyle || {};
+const List = props => {
+  const classNames = props.classNames || defaultClassNames;
 
-		if (this.props.stretch) itemBaseStyle.flex = 1;
+  const style = {
+    display: 'flex',
+    flexDirection: props.horizontal ? 'row' : 'column',
+    ...props.style
+  };
 
-		const selectHandler = (item) => {
-			if (this.props.onItemSelect) this.props.onItemSelect(item);
-		};
+  if (props.reverse) style.flexDirection += '-reverse';
 
-		const itemEnterHandler = (item) => {
-			if (this.props.onItemEnter) this.props.onItemEnter(item);
-		};
+  const selectItemHandler = (ev, item, index) => {
+    if (props.onMouseUp) props.onMouseUp(ev);
+    if (props.onSelectItem) props.onSelectItem(item);
+    if (props.onSelectIndex) props.onSelectIndex(index);
+  };
 
-		const itemLeaveHandler = (item) => {
-			if (this.props.onItemLeave) this.props.onItemLeave(item);
-		};
+  const enterIndexHandler = (ev, item, index) => {
+    if (props.onMouseEnter) props.onMouseEnter(ev);
+    if (props.onEnterItem) props.onEnterItem(item);
+    if (props.onEnterIndex) props.onEnterIndex(index);
+  };
 
-		const items = this.props.data.map((item, index) => {
-			if (!item.key) {
-				item.key = item.text + '_' + item.divider + '_' + item.disabled;
-			}
+  const leaveIndexHandler = (ev, item, index) => {
+    if (props.onMouseLeave) props.onMouseLeave(ev);
+    if (props.onLeaveItem) props.onLeaveItem(item);
+    if (props.onLeaveIndex) props.onLeaveIndex(index);
+  };
 
-			let theme = item.theme || this.props.itemTheme || themeIds.LIST_ITEM;
-			const selected = this.props.selectedIndex == index;
-			if (item.disabled) {
-				theme =
-					item.disabledTheme ||
-					this.props.disabledItemTheme ||
-					themeIds.LIST_ITEM_DISABLED;
-			} else if (this.props.selectable) {
-				if (selected)
-					theme =
-						item.selectedTheme ||
-						this.props.selectedItemTheme ||
-						themeIds.LIST_ITEM_SELECTED;
-			}
+  const defaultItemRenderer = props.itemRenderer || ListItem;
 
-			let Renderer = this.props.renderer || item.renderer || ListItem;
+  const children = props.data.map((item, index) => {
+    const ItemRenderer = withTheming(item.renderer || defaultItemRenderer);
+    const itemCssId = item.cssId || props.itemCssId || props.cssId;
 
-			return (
-				<Renderer
-					key={item.key}
-					theme={theme}
-					data={item}
-					baseStyle={itemBaseStyle}
-					onSelect={selectHandler}
-					onItemEnter={itemEnterHandler}
-					onItemLeave={itemLeaveHandler}
-					selected={selected}
-					{...itemProps}
-					{...item.itemProps}
-				/>
-			);
-		});
+    const itemProps = {
+      onMouseUp: ev => selectItemHandler(ev, item, index),
+      onMouseEnter: ev => enterIndexHandler(ev, item, index),
+      onMouseLeave: ev => leaveIndexHandler(ev, item, index)
+    };
 
-		const style = {
-			display: 'flex',
-			flexDirection: this.props.horizontal ? 'row' : 'column',
-		};
+    return (
+      <ItemRenderer
+        key={`${index}_${item.text}`}
+        cssId={itemCssId}
+        data={item}
+        itemProps={itemProps}
+        ownerProps={props.ownerProps || props}
+        selected={props.selectedIndex === index}
+        entered={props.enteredIndex === index}
+        item={item}
+        classNames={props.classNames || classNames}
+        index={index}
+      />
+    );
+  });
 
-		const finalStyle = this.createStyle(themeIds.LIST, this.props, style);
+  const mouseDownHandler = ev => {
+    if (props.onMouseDown) props.onMouseDown(ev);
+  };
 
-		return (
-			<div
-				style={finalStyle}
-				onMouseEnter={this.mouseEnterHandler}
-				onMouseLeave={this.mouseLeaveHandler}
-			>
-				{items}
-			</div>
-		);
-	}
-}
+  const mouseUpHandler = ev => {
+    if (props.onMouseUp) props.onMouseUp(ev);
+  };
 
-export default themeComponent(List);
+  const mouseEnterHandler = ev => {
+    if (props.onMouseEnter) props.onMouseEnter(ev);
+  };
+
+  const mouseLeaveHandler = ev => {
+    if (props.onMouseLeave) props.onMouseLeave(ev);
+  };
+
+  return (
+    <div
+      style={style}
+      className={props.css ? props.css[classNames.LIST] : null}
+      onMouseDown={mouseDownHandler}
+      onMouseUp={mouseUpHandler}
+      onMouseEnter={mouseEnterHandler}
+      onMouseLeave={mouseLeaveHandler}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default withSelectIndex(withTheming(List));
