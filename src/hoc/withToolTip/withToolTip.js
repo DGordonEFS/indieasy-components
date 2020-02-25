@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { store } from '@indieasy.software/indieasy.engine';
+import { store } from '@indieasy.software/indieasy-engine';
 
 const mapStateToProps = (state) => {
 	return {

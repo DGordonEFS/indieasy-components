@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Core components for Indieasy.",
   "main": "build/index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@indieasy.software/indieasy-engine": "0.0.9",
     "@storybook/addon-actions": "^4.0.0-alpha.20",
     "@storybook/react": "^5.3.10",
     "@tulipjs/eslint-config": "^1.1.1",
@@ -44,16 +45,20 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.0",
     "react": "^16.12.0",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.0"
   },
   "dependencies": {},
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.8.6",
-    "@indieasy.software/indieasy-engine": "^0.0.7"
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "@indieasy.software/indieasy-engine": "^0.0.9"
   },
   "files": [
     "/build"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { theming } from '@indieasy.software/indieasy.engine';
+import { theming } from '@indieasy.software/indieasy-engine';
 
 export default (Component) => {
 	return (props) => {
