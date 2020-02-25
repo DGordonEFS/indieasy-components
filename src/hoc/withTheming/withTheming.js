@@ -1,11 +1,11 @@
-import React from 'react';
-import { theming } from '@indieasy.software/indieasy-engine';
+import { connect } from 'react-redux';
 
-export default (Component) => {
-	return (props) => {
-		if (!props.cssId) return <Component {...props} />;
-		const theme = theming.manager.getActiveTheme();
-		const css = theme.getCss(props.cssId);
-		return <Component {...props} css={css} />;
+const mapStateToProps = (state, ownerProps) => {
+	return {
+		css: state.theming.currentTheme
+			? state.theming.currentTheme.getCss(ownerProps.cssId)
+			: null,
 	};
 };
+
+export default (component) => connect(mapStateToProps)(component);
