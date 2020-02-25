@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Core components for Indieasy.",
   "main": "build/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
-    "@indieasy.software/indieasy-engine": "0.0.11",
+    "@indieasy.software/indieasy-engine": "0.0.12",
     "@storybook/addon-actions": "^4.0.0-alpha.20",
     "@storybook/react": "^5.3.10",
     "@tulipjs/eslint-config": "^1.1.1",
@@ -58,7 +58,7 @@
     "react-dom": ">=16.12.0",
     "react-redux": ">=7.2.0",
     "redux": ">=4.0.5",
-    "@indieasy.software/indieasy-engine": ">=0.0.11"
+    "@indieasy.software/indieasy-engine": ">=0.0.12"
   },
   "files": [
     "/build"
