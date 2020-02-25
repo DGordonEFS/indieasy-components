@@ -4,35 +4,23 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // Import our component from this folder
 import SplitPane from './SplitPane';
-import Button from 'components/Button';
-import Panel from 'components/Panel';
-import { ControlledTabBar } from 'components/TabBar';
 
-import { setCurrentTheme } from 'theming';
+import css from './splitpane.module.css';
 
-const basicData = [{ text: 'File' }, { text: 'Edit' }, { text: 'Options' }];
-
-const selectedIndex = 0;
-
-storiesOf('SplitPane')
-	.add('with Horizontal', () => (
-		<div
-			style={{
-				border: '1px solid black',
-				backgroundColor: 'gray',
-				height: '768px',
-			}}
-		>
-			<SplitPane>
-				<div
-					style={{ width: '100%', height: '100%', backgroundColor: 'red' }}
-				/>
-				<div
-					style={{ width: '100%', height: '100%', backgroundColor: 'blue' }}
-				/>
-			</SplitPane>
-		</div>
-	))
+storiesOf('SplitPane').add('with Horizontal', () => (
+	<div
+		style={{
+			border: '1px solid black',
+			backgroundColor: 'gray',
+			height: '768px',
+		}}
+	>
+		<SplitPane css={css}>
+			<div style={{ width: '100%', height: '100%', backgroundColor: 'red' }} />
+			<div style={{ width: '100%', height: '100%', backgroundColor: 'blue' }} />
+		</SplitPane>
+	</div>
+)); /*
 	.add('with Vertical', () => (
 		<div
 			style={{
@@ -70,7 +58,6 @@ storiesOf('SplitPane')
 					flexShrink: 0,
 				}}
 			>
-				<Button onClick={() => setCurrentTheme('light')}>Change Theme</Button>
 			</div>
 			<div
 				style={{
@@ -87,18 +74,6 @@ storiesOf('SplitPane')
 					/>
 					<SplitPane id="b">
 						<SplitPane id="c" vertical>
-							<Panel
-								baseStyle={{
-									width: '100%',
-									height: '100%',
-								}}
-							/>
-							<Panel
-								baseStyle={{
-									width: '100%',
-									height: '100%',
-								}}
-							/>
 						</SplitPane>
 						<div
 							style={{
@@ -179,4 +154,4 @@ storiesOf('SplitPane')
 				</SplitPane>
 			</SplitPane>
 		</div>
-	));
+	));*/
