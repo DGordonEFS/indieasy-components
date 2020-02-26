@@ -1,5 +1,4 @@
 import React from 'react';
-import { Props } from 'docz';
 
 const Modal = (props) => {
 	const clickHandler = (ev) => {
