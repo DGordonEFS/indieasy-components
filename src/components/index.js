@@ -9,3 +9,4 @@ export { default as ScrollPane } from './ScrollPane';
 export { default as SplitPane } from './SplitPane';
 export { default as Toggle } from './Toggle';
 export { default as ToolTip } from './ToolTip';
+export { default as TutorialTip } from './TutorialTip';
