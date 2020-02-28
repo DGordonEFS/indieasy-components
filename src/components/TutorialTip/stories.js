@@ -10,8 +10,10 @@ import TutorialTip from './TutorialTip';
 
 import { store, tutorialTips } from '@indieasy.software/indieasy-engine';
 
+const blockedManager = tutorialTips.system.createManager('blocked');
+
+tutorialTips.system.registerReducer();
 store.createStore();
-tutorialTips.init();
 
 // Here we describe the stories we want to see of the Button. The component is
 // pretty simple so we will just make two, one with text and one with emojis
@@ -102,6 +104,71 @@ storiesOf('Tutorial Tips')
 		return (
 			<Provider store={store.getStore()}>
 				<TutorialTip renderer={renderer} />
+			</Provider>
+		);
+	})
+	.add('tutorial tips default and blocked', () => {
+		const renderer = (props) => {
+			return (
+				<div
+					style={{
+						position: 'fixed',
+						width: '400px',
+						height: '150px',
+						backgroundColor: 'gray',
+						left: '10px',
+						bottom: '10px',
+					}}
+				>
+					<div>{props.tutorialTip.title}</div>
+					<div>{props.tutorialTip.text}</div>
+				</div>
+			);
+		};
+
+		const blockedRenderer = (props) => {
+			return (
+				<div
+					style={{
+						position: 'fixed',
+						width: '400px',
+						height: '75px',
+						backgroundColor: 'white',
+						left: '10px',
+						bottom: '170px',
+						border: '1px solid black',
+					}}
+				>
+					<div>{props.tutorialTip.title}</div>
+					<div>{props.tutorialTip.text}</div>
+				</div>
+			);
+		};
+
+		tutorialTips.manager.unwatchAll();
+		tutorialTips.manager.clear();
+		tutorialTips.manager.closeTip();
+
+		tutorialTips.manager.addTip(
+			new tutorialTips.TutorialTip('t01', 'Finding Nemo', 'Just keep swimming.')
+		);
+		tutorialTips.manager.setCurrentTip('t01');
+
+		tutorialTips.system
+			.getManager('blocked')
+			.addTip(
+				new tutorialTips.TutorialTip(
+					't03',
+					'Printing',
+					'Printing is disabled in the simulator.'
+				)
+			);
+		tutorialTips.system.getManager('blocked').setCurrentTip('t03');
+
+		return (
+			<Provider store={store.getStore()}>
+				<TutorialTip renderer={renderer} />
+				<TutorialTip managerId="blocked" renderer={blockedRenderer} />
 			</Provider>
 		);
 	});

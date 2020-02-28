@@ -6,103 +6,105 @@ import { withSelectIndex } from '../../hoc/withSelectIndex';
 import MenuPopup from '../MenuPopup';
 
 export const defaultClassNames = {
-  DROPDOWN: 'dropdown',
-  POPUP: 'popup',
-  HEADER: 'dropdown-header',
-  TEXT: 'dropdown-text',
-  ARROW: 'dropdown-arrow'
+	DROPDOWN: 'dropdown',
+	POPUP: 'popup',
+	HEADER: 'dropdown-header',
+	TEXT: 'dropdown-text',
+	ARROW: 'dropdown-arrow',
 };
 
 class DropDown extends Component {
-  state = { open: false };
+	state = { open: false };
 
-  clickHandler = () => {
-    this.setState(prevState => {
-      const open = !prevState.open;
+	clickHandler = () => {
+		this.setState((prevState) => {
+			const open = !prevState.open;
 
-      if (open) {
-        document.removeEventListener('mouseup', this.closeHandler);
-        document.addEventListener('mouseup', this.closeHandler);
-      } else {
-        document.removeEventListener('mouseup', this.closeHandler);
-      }
+			if (open) {
+				document.removeEventListener('mouseup', this.closeHandler);
+				document.addEventListener('mouseup', this.closeHandler);
+			} else {
+				document.removeEventListener('mouseup', this.closeHandler);
+			}
 
-      return { open: !prevState.open };
-    });
-  };
+			return { open: !prevState.open };
+		});
+	};
 
-  selectItemHandler = item => {
-    const index = this.props.data.findIndex(x => x === item);
+	selectItemHandler = (item) => {
+		const index = this.props.data.findIndex((x) => x === item);
 
-    this.setState({ open: false });
+		this.setState({ open: false });
 
-    if (this.props.onSelectIndex) this.props.onSelectIndex(index);
-    if (this.props.onSelectItem) this.props.onSelectItem(item);
-  };
+		if (this.props.onSelectIndex) this.props.onSelectIndex(index);
+		if (this.props.onSelectItem) this.props.onSelectItem(item);
+	};
 
-  componentWillUnmount = () => {
-    document.removeEventListener('mouseup', this.closeHandler);
-  };
+	componentWillUnmount = () => {
+		document.removeEventListener('mouseup', this.closeHandler);
+	};
 
-  closeHandler = () => {
-    this.setState({ open: false });
-  };
+	closeHandler = () => {
+		this.setState({ open: false });
+	};
 
-  render() {
-    const classNames = this.props.classNames || defaultClassNames;
+	render() {
+		const classNames = this.props.classNames || defaultClassNames;
 
-    const popupCssId = this.props.popupCssId || this.cssId;
+		const popupCssId = this.props.popupCssId || this.cssId;
+		const popupCss = this.props.popupCss || this.css;
 
-    let header;
-    let menu;
+		let header;
+		let menu;
 
-    if (this.state.open) {
-      header = (
-        <div
-          style={{ width: this.props.width || '100%' }}
-          className={this.props.css[classNames.HEADER]}
-        >
-          {this.props.header}
-        </div>
-      );
-      menu = (
-        <MenuPopup
-          style={{ width: this.props.width || '100%' }}
-          cssId={popupCssId}
-          data={this.props.data}
-          onMenuItem={this.selectItemHandler}
-          initialSelectedIndex={this.props.initialSelectedIndex}
-        />
-      );
-    }
+		if (this.state.open) {
+			header = (
+				<div
+					style={{ width: this.props.width || '100%' }}
+					className={this.props.css[classNames.HEADER]}
+				>
+					{this.props.header}
+				</div>
+			);
+			menu = (
+				<MenuPopup
+					style={{ width: this.props.width || '100%' }}
+					css={popupCss}
+					cssId={popupCssId}
+					data={this.props.data}
+					onMenuItem={this.selectItemHandler}
+					initialSelectedIndex={this.props.initialSelectedIndex}
+				/>
+			);
+		}
 
-    const selectedIndex =
-      this.props.selectedIndex !== undefined
-        ? this.props.selectedIndex
-        : this.state.selectedIndex;
+		const selectedIndex =
+			this.props.selectedIndex !== undefined
+				? this.props.selectedIndex
+				: this.state.selectedIndex;
 
-    const text = selectedIndex > -1 ? this.props.data[selectedIndex].text : '';
+		const text = selectedIndex > -1 ? this.props.data[selectedIndex].text : '';
 
-    return (
-      <div style={{ width: this.props.width || '100%' }}>
-        <div
-          onMouseUp={this.clickHandler}
-          className={this.props.css[classNames.DROPDOWN]}
-        >
-          <div className={this.props.css[classNames.TEXT]}>{text}</div>
-          <div className={this.props.css[classNames.ARROW]}>
-            {this.props.arrow}
-          </div>
-        </div>
-        <div className={this.props.css[classNames.POPUP]}>
-          {header}
-          {menu}
-        </div>
-      </div>
-    );
-  }
+		return (
+			<div style={{ width: this.props.width || '100%' }}>
+				<div
+					onMouseUp={this.clickHandler}
+					className={this.props.css[classNames.DROPDOWN]}
+				>
+					<div className={this.props.css[classNames.TEXT]}>{text}</div>
+					<div className={this.props.css[classNames.ARROW]}>
+						{this.props.arrow}
+					</div>
+				</div>
+				<div className={this.props.css[classNames.POPUP]}>
+					{header}
+					{menu}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default withSelectIndex(withTheming(DropDown), {
-  ignore: { enterIndex: true, leaveIndex: true }
+	ignore: { enterIndex: true, leaveIndex: true },
 });
