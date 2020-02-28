@@ -75,10 +75,18 @@ const Datagrid = (props) => {
 
 		if (!props.sortable) return;
 
+		const numberSort = (a, b) => {
+			if (a > b) return 1;
+			if (a < b) return -1;
+			return 0;
+		};
+
 		const sortFunction =
 			column.sort ||
 			((x, y) => {
-				return x.text.localeCompare(y.text);
+				return x.value !== undefined
+					? numberSort(x.value, y.value)
+					: x.text.localeCompare(y.text);
 			});
 
 		const originalColumnData = props.data[column.name];
