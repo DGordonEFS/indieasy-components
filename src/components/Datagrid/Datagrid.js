@@ -129,10 +129,7 @@ const Datagrid = (props) => {
 	};
 
 	const columns = props.columns.map((column, index) => {
-		const itemRenderer =
-			props.data[column.name][index].itemRenderer ||
-			column.itemRenderer ||
-			props.itemRenderer;
+		const itemRenderer = column.itemRenderer || props.itemRenderer;
 
 		const columnCssId = column.cssId || props.cssId;
 		const columnCss = column.css || props.css;
