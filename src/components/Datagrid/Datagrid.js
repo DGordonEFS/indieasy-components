@@ -33,8 +33,9 @@ const Datagrid = (props) => {
 	const [reverseSortColumn, setReverseSortColumn] = useState(false);
 
 	const style = {
-		display: 'flex',
+		display: 'inline-flex',
 		alignItems: 'stretch',
+		...props.style,
 	};
 
 	const getRowData = (index) => {
@@ -155,7 +156,7 @@ const Datagrid = (props) => {
 				ownerProps={props.ownerProps || props}
 				css={columnCss}
 				cssId={columnCssId}
-				data={props.data[column.name]}
+				data={props.data[column.id || column.name]}
 				style={!props.headers ? column.style : null}
 				onSelectIndex={(idx) => selectIndexHandler(index, idx)}
 				selectedIndex={selectedIndex}
