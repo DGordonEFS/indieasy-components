@@ -18,7 +18,7 @@ export const classNames = {
 const Header = (props) => {
 	return (
 		<div
-			className={props.css[classNames.HEADER]}
+			className={props.css[props.classNames.HEADER]}
 			onMouseUp={(ev) => props.sortByColumn(ev, props.column)}
 		>
 			{props.column.name}
@@ -169,13 +169,16 @@ const Datagrid = (props) => {
 
 		if (!props.headers) return list;
 
-		const header = column.headerRenderer || props.headerRenderer || (
-			<Header
+		const HeaderRenderer =
+			column.headerRenderer || props.headerRenderer || Header;
+		const header = (
+			<HeaderRenderer
 				css={props.css}
+				classNames={classNames}
 				column={column}
 				sortByColumn={sortByColumn}
 				selected={index === sortedColumn}
-				reversed={reverseSortColumn}
+				reverse={reverseSortColumn}
 			/>
 		);
 
