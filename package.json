@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-components",
-  "version": "3.0.20",
+  "version": "3.0.21",
   "description": "Core components for Indieasy.",
   "main": "build/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "@babel/preset-react": "^7.8.3",
     "@indieasy.software/indieasy-engine": "0.0.21",
     "@storybook/addon-actions": "^4.0.0-alpha.20",
-    "@storybook/react": "^5.3.10",
+    "@storybook/react": "^5.3.14",
     "@tulipjs/eslint-config": "^1.1.1",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.6",

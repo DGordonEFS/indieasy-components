@@ -29,6 +29,8 @@ const Header = (props) => {
 const Datagrid = (props) => {
 	const [selectedColumn, setSelectedColumn] = useState(-1);
 	const [enteredColumn, setEnteredColumn] = useState(-1);
+	const [sortedColumn, setSortedColumn] = useState(-1);
+	const [reverseSortColumn, setReverseSortColumn] = useState(false);
 
 	const style = {
 		display: 'flex',
@@ -75,6 +77,8 @@ const Datagrid = (props) => {
 
 		if (!props.sortable) return;
 
+		setSortedColumn(props.columns.indexOf(column));
+
 		const numberSort = (a, b) => {
 			if (a > b) return 1;
 			if (a < b) return -1;
@@ -113,6 +117,8 @@ const Datagrid = (props) => {
 
 		if (alreadySorted) newIndices.reverse();
 
+		setReverseSortColumn(alreadySorted);
+
 		const newData = {};
 		props.columns.forEach((column) => {
 			columnData = props.data[column.name];
@@ -128,6 +134,8 @@ const Datagrid = (props) => {
 			props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
 	};
 
+	props.sortByColumn = sortByColumn;
+
 	const columns = props.columns.map((column, index) => {
 		const itemRenderer = column.itemRenderer || props.itemRenderer;
 
@@ -142,6 +150,7 @@ const Datagrid = (props) => {
 		if (props.cells) {
 			enteredIndex = index === enteredColumn ? props.enteredIndex : -1;
 		}
+
 		const list = (
 			<List
 				key={index + '_' + column.name}
@@ -163,7 +172,13 @@ const Datagrid = (props) => {
 		if (!props.headers) return list;
 
 		const header = column.headerRenderer || props.headerRenderer || (
-			<Header css={props.css} column={column} sortByColumn={sortByColumn} />
+			<Header
+				css={props.css}
+				column={column}
+				sortByColumn={sortByColumn}
+				selected={index === sortedColumn}
+				reversed={reverseSortColumn}
+			/>
 		);
 
 		return (
