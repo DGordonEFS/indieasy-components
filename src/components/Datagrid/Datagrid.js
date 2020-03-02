@@ -134,8 +134,6 @@ const Datagrid = (props) => {
 			props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
 	};
 
-	props.sortByColumn = sortByColumn;
-
 	const columns = props.columns.map((column, index) => {
 		const itemRenderer = column.itemRenderer || props.itemRenderer;
 
