@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
+import { toolTips } from '@indieasy.software/indieasy-engine';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownerProps) => {
 	return {
-		toolTip: state.tooltips.currentToolTip,
+		toolTip: toolTips.system.getManager(ownerProps.managerId || '_default')
+			.currentToolTip,
 	};
 };
 

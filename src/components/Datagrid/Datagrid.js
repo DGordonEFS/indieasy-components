@@ -131,7 +131,7 @@ const Datagrid = (props) => {
 		});
 
 		if (props.onModifyData) props.onModifyData(newData);
-		if (props.selectedIndex != null && props.onSelectIndex)
+		if (props.onSelectIndex)
 			props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
 	};
 
