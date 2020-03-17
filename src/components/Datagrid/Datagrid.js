@@ -130,9 +130,8 @@ const Datagrid = (props) => {
 			});
 		});
 
-		if (props.onModifyData) props.onModifyData(newData);
-		if (props.onSelectIndex)
-			props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
+		if (props.onSort)
+			props.onSort(newIndices.indexOf(props.selectedIndex), newData);
 	};
 
 	const columns = props.columns.map((column, index) => {
