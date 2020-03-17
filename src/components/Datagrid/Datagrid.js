@@ -163,7 +163,7 @@ const Datagrid = (props) => {
 		const toSortedIndex = (index) => {
 			const columnData = data[column.id || column.name];
 			return selectedIndex > -1
-				? columnData.findIndexOf(
+				? columnData.findIndex(
 						(x) => x === originalData[column.id || column.name][index]
 				  )
 				: -1;
@@ -172,7 +172,7 @@ const Datagrid = (props) => {
 		const fromSortedIndex = (index) => {
 			const columnData = originalData[column.id || column.name];
 			return selectedIndex > -1
-				? columnData.findIndexOf(
+				? columnData.findIndex(
 						(x) => x === data[column.id || column.name][index]
 				  )
 				: -1;
