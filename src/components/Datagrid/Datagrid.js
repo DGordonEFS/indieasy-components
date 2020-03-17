@@ -31,6 +31,13 @@ const Datagrid = (props) => {
 	const [enteredColumn, setEnteredColumn] = useState(-1);
 	const [sortedColumn, setSortedColumn] = useState(-1);
 	const [reverseSortColumn, setReverseSortColumn] = useState(false);
+	const [originalData, setOriginalData] = useState(props.data);
+	const [data, setData] = useState(originalData);
+
+	if (props.data != originalData) {
+		setOriginalData(props.data);
+		setData(props.data);
+	}
 
 	const style = {
 		display: 'inline-flex',
@@ -130,8 +137,12 @@ const Datagrid = (props) => {
 			});
 		});
 
-		if (props.onSort)
-			props.onSort(newIndices.indexOf(props.selectedIndex), newData);
+		console.log('set data: ' + newData);
+		setData(newData);
+
+		//if (props.onModifyData) props.onModifyData(newData);
+		//if (props.onSelectIndex)
+		//	props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
 	};
 
 	const columns = props.columns.map((column, index) => {
@@ -149,19 +160,47 @@ const Datagrid = (props) => {
 			enteredIndex = index === enteredColumn ? props.enteredIndex : -1;
 		}
 
+		const toSortedIndex = (index) => {
+			const columnData = data[column.id || column.name];
+			return selectedIndex > -1
+				? columnData.findIndexOf(
+						(x) => x === originalData[column.id || column.name][index]
+				  )
+				: -1;
+		};
+
+		const fromSortedIndex = (index) => {
+			const columnData = originalData[column.id || column.name];
+			return selectedIndex > -1
+				? columnData.findIndexOf(
+						(x) => x === data[column.id || column.name][index]
+				  )
+				: -1;
+		};
+
+		const sortedSelectedIndex = toSortedIndex(selectedIndex);
+		const sortedEnteredIndex = toSortedIndex(enteredIndex);
+
+		console.log(
+			`original selected index: ${selectedIndex}, sorted selected index: ${sortedSelectedIndex}`
+		);
+		console.log(
+			`original entered index: ${enteredIndex}, sorted entered index: ${sortedEnteredIndex}`
+		);
+
 		const list = (
 			<List
 				key={index + '_' + column.name}
 				ownerProps={props.ownerProps || props}
 				css={columnCss}
 				cssId={columnCssId}
-				data={props.data[column.id || column.name]}
+				data={columnData}
 				style={!props.headers ? column.style : null}
-				onSelectIndex={(idx) => selectIndexHandler(index, idx)}
-				selectedIndex={selectedIndex}
-				onEnterIndex={(idx) => enterIndexHandler(index, idx)}
-				enteredIndex={enteredIndex}
-				onLeaveIndex={(idx) => leaveIndexHandler(index, idx)}
+				onSelectIndex={(idx) => selectIndexHandler(index, fromSortedIndex(idx))}
+				selectedIndex={sortedSelectedIndex}
+				onEnterIndex={(idx) => enterIndexHandler(index, fromSortedIndex(idx))}
+				enteredIndex={sortedEnteredIndex}
+				onLeaveIndex={(idx) => leaveIndexHandler(index, fromSortedIndex(idx))}
 				itemRenderer={itemRenderer}
 				classNames={classNames}
 			/>
