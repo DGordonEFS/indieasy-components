@@ -101,8 +101,9 @@ const Datagrid = (props) => {
 					: x.text.localeCompare(y.text);
 			});
 
-		const originalColumnData = props.data[column.name];
-		let columnData = [...props.data[column.name]];
+		const originalColumnData = data[column.name];
+		let columnData = [...data[column.name]];
+
 		const oldIndices = columnData.map((item) =>
 			originalColumnData.indexOf(item)
 		);
