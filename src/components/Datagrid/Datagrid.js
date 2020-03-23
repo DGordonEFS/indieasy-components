@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { withSelectIndex } from '../../hoc/withSelectIndex';
 import { withTheming } from '../../hoc/withTheming';
@@ -31,13 +31,21 @@ const Datagrid = (props) => {
 	const [enteredColumn, setEnteredColumn] = useState(-1);
 	const [sortedColumn, setSortedColumn] = useState(-1);
 	const [reverseSortColumn, setReverseSortColumn] = useState(false);
-	const [originalData, setOriginalData] = useState(props.data);
-	const [data, setData] = useState(originalData);
 
-	if (props.data != originalData) {
-		setOriginalData(props.data);
-		setData(props.data);
+	const originalDataRef = useRef(props.data);
+	const dataRef = useRef(props.data);
+
+	if (props.data != originalDataRef.current) {
+		console.log('updating with new data');
+		originalDataRef.current = props.data;
+		dataRef.current = props.data;
 	}
+
+	const originalData = originalDataRef.current;
+	const data = dataRef.current;
+
+	console.log('data');
+	console.log(data);
 
 	const style = {
 		display: 'inline-flex',
@@ -85,8 +93,6 @@ const Datagrid = (props) => {
 
 		if (!props.sortable) return;
 
-		setSortedColumn(props.columns.indexOf(column));
-
 		const numberSort = (a, b) => {
 			if (a > b) return 1;
 			if (a < b) return -1;
@@ -101,7 +107,7 @@ const Datagrid = (props) => {
 					: x.text.localeCompare(y.text);
 			});
 
-		const originalColumnData = data[column.name];
+		const originalColumnData = originalData[column.name];
 		let columnData = [...data[column.name]];
 
 		const oldIndices = columnData.map((item) =>
@@ -113,7 +119,11 @@ const Datagrid = (props) => {
 			originalColumnData.indexOf(item)
 		);
 
-		let alreadySorted = true;
+		console.log(oldIndices);
+		console.log(newIndices);
+
+		console.log(`${sortedColumn} : ${props.columns.indexOf(column)}`);
+		let alreadySorted = sortedColumn === props.columns.indexOf(column);
 		for (let i = 0; i < oldIndices.length; i++) {
 			const oldIndex = oldIndices[i];
 			const newIndex = newIndices[i];
@@ -124,23 +134,38 @@ const Datagrid = (props) => {
 			}
 		}
 
-		if (alreadySorted) newIndices.reverse();
+		if (alreadySorted && reverseSortColumn) {
+			alreadySorted = !alreadySorted;
+			newIndices.reverse();
+			console.log('reverse indices');
+			console.log(newIndices);
+		}
 
-		setReverseSortColumn(alreadySorted);
+		console.log(`alreadySorted ${alreadySorted}`);
+		if (alreadySorted) {
+			newIndices.reverse();
+			console.log('reverse indices');
+			console.log(newIndices);
+		}
 
 		const newData = {};
 		props.columns.forEach((column) => {
-			columnData = props.data[column.name];
-
-			const newColumn = (newData[column.name] = []);
+			const newColumn = [];
 			newIndices.forEach((index) => {
-				newColumn.push(columnData[index]);
+				newColumn.push(originalDataRef.current[column.name][index]);
 			});
+
+			newData[column.name] = newColumn;
 		});
 
-		console.log('set data: ' + newData);
-		setData(newData);
-
+		console.log('old data: ');
+		console.log(dataRef.current);
+		console.log('new data: ');
+		console.log(newData);
+		dataRef.current = newData;
+		//data = newData;
+		setSortedColumn(props.columns.indexOf(column));
+		setReverseSortColumn(alreadySorted);
 		//if (props.onModifyData) props.onModifyData(newData);
 		//if (props.onSelectIndex)
 		//	props.onSelectIndex(newIndices.indexOf(props.selectedIndex));
@@ -182,14 +207,14 @@ const Datagrid = (props) => {
 
 		const sortedSelectedIndex = toSortedIndex(selectedIndex);
 		const sortedEnteredIndex = toSortedIndex(enteredIndex);
-
+		/*
 		console.log(
 			`original selected index: ${selectedIndex}, sorted selected index: ${sortedSelectedIndex}`
 		);
 		console.log(
 			`original entered index: ${enteredIndex}, sorted entered index: ${sortedEnteredIndex}`
 		);
-
+*/
 		const list = (
 			<List
 				key={index + '_' + column.name}

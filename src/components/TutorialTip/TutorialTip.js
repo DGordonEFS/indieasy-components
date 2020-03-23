@@ -16,10 +16,11 @@ const TutorialTip = (props) => {
 		top: '0',
 		bottom: '0',
 		zIndex: 999999,
+		pointerEvents: 'none',
 	};
 
 	const modal = props.tutorialTip.modal ? (
-		<Modal style={props.modalStyle} />
+		<Modal style={{ pointerEvents: 'all', ...props.modalStyle }} />
 	) : null;
 	let Renderer = props.renderer;
 
