@@ -119,10 +119,10 @@ const Datagrid = (props) => {
 			originalColumnData.indexOf(item)
 		);
 
-		console.log(oldIndices);
-		console.log(newIndices);
+		//console.log(oldIndices);
+		//console.log(newIndices);
 
-		console.log(`${sortedColumn} : ${props.columns.indexOf(column)}`);
+		//console.log(`${sortedColumn} : ${props.columns.indexOf(column)}`);
 		let alreadySorted = sortedColumn === props.columns.indexOf(column);
 		for (let i = 0; i < oldIndices.length; i++) {
 			const oldIndex = oldIndices[i];
@@ -190,7 +190,7 @@ const Datagrid = (props) => {
 		const originalColumnData = originalData[column.id || column.name];
 
 		const toSortedIndex = (index) => {
-			return selectedIndex > -1
+			return index > -1
 				? columnData.findIndex(
 						(x) => x === originalData[column.id || column.name][index]
 				  )
@@ -198,7 +198,7 @@ const Datagrid = (props) => {
 		};
 
 		const fromSortedIndex = (index) => {
-			return selectedIndex > -1
+			return index > -1
 				? originalColumnData.findIndex(
 						(x) => x === data[column.id || column.name][index]
 				  )
