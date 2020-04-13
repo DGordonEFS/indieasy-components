@@ -6,7 +6,7 @@ import Grid from '../parts/Grid';
 import TitleList from '../parts/TitleList';
 
 const createCrossValueTitleList = (props) => {
-	return (
+	return (!props.hideCrossValues ? 
 		<TitleList
 			xAxis={props.xAxis}
 			yAxis={props.yAxis}
@@ -17,12 +17,12 @@ const createCrossValueTitleList = (props) => {
 			reverse={props.crossValueReverse}
 			data={props.crossValues}
 			textAlign={props.crossValueTextAlign}
-		/>
+		/> : null
 	);
 };
 
 const createDataTitleList = (props) => {
-	return (
+	return (!props.hideValues ? 
 		<TitleList
 			xAxis={props.xAxis}
 			yAxis={props.yAxis}
@@ -33,7 +33,7 @@ const createDataTitleList = (props) => {
 			reverse={props.valueReverse}
 			data={props.values}
 			textAlign={props.valueTextAlign}
-		/>
+		/> : null
 	);
 };
 

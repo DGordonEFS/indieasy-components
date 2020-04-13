@@ -9,7 +9,7 @@ const TitleList = props => {
       return {
         ...item,
         value: cellSize * (index + 0.5),
-        style: {
+        itemStyle: {
           width: props.horizontal ? `${cellSize}%` : null
         }
       };
@@ -65,7 +65,7 @@ const TitleList = props => {
     if (props.rotate) rowStyle.transform += ` rotate(${props.rotate}deg)`;
 
     return (
-      <div key={item.value} style={{ ...item.style, ...rowStyle }}>
+      <div key={item.value} style={{  ...item.itemStyle, ...item.style, ...rowStyle }}>
         {item.name || item.value}
       </div>
     );
