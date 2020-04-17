@@ -24,11 +24,18 @@ class Toggle extends Component {
   };
 
   mouseUpHandler = ev => {
-    this.setState(prevState => {
-      const selected = !prevState.selected;
-      if (this.props.onToggle) this.props.onToggle(selected);
-      return { selected: selected };
-    });
+    if (this.props.selected !== undefined)
+    {
+      if (this.props.onToggle) this.props.onToggle(!this.state.selected);
+    }
+    else
+    {
+      this.setState(prevState => {
+        const selected = !prevState.selected;
+        if (this.props.onToggle) this.props.onToggle(selected);
+        return { selected: selected };
+      });
+    }
   };
 
   render() {
