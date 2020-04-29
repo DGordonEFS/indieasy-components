@@ -48,7 +48,7 @@ const createGrid = (props) => {
 		lastCrossValue = item.value;
 		return {
 			...item,
-			value: (value / props.maxCrossValue) * 100,
+			value: value,
 			backgroundColor: color,
 		};
 	});
@@ -63,7 +63,7 @@ const createGrid = (props) => {
 		lastValue = item.value;
 		return {
 			...item,
-			value: (value / props.maxValue) * 100,
+			value: value,
 			backgroundColor: color,
 		};
 	});

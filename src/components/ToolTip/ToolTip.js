@@ -39,9 +39,13 @@ const ToolTip = props => {
     position: 'fixed',
     left: props.toolTip.x,
     right: props.toolTip.x,
-    top: props.toolTip.y,
     zIndex: 999999
   };
+
+  if (props.toolTip.data.anchor == "BOTTOM")
+    style.bottom = props.toolTip.y;
+  else
+    style.top = props.toolTip.y;
 
   let Renderer = props.renderer || ToolTipRenderer;
 

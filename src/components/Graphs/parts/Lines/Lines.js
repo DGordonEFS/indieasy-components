@@ -123,7 +123,8 @@ const Lines = props => {
   const icons = props.data.map((item, itemIndex) => {
     const itemStyle = {
       width: '100%',
-      height: '100%'
+      height: '100%',
+      pointerEvents: 'none'
     };
 
     let lastX;
@@ -149,7 +150,7 @@ const Lines = props => {
             x = crossValuePercent * width;
           }
 
-          const positionStyle = { position: 'absolute' };
+          const positionStyle = { position: 'absolute', pointerEvents: 'all' };
 
           positionStyle.left = x + 'px';
           positionStyle.bottom = y + 'px';
