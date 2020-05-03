@@ -103,8 +103,8 @@ const Datagrid = (props) => {
 			column.sort ||
 			((x, y) => {
 				return x.value !== undefined
-					? numberSort(x.value, y.value)
-					: x.text.localeCompare(y.text);
+					? numberSort(y.value, x.value)
+					: y.text.localeCompare(x.text);
 			});
 
 		const originalColumnData = originalData[column.name];

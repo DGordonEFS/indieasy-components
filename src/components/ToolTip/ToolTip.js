@@ -16,10 +16,10 @@ const ToolTipRenderer = props => {
   };
 
   const contents = props.toolTip.data.contents || (
-    <Fragment>
-      <div>{props.toolTip.data.header}</div>
-      <div>{props.toolTip.data.text}</div>
-    </Fragment>
+    <div style={props.toolTip.data.style}>
+      <div className={props.css["title"]}>{props.toolTip.data.title}</div>
+      <div className={props.css["text"]}>{props.toolTip.data.text}</div>
+    </div>
   );
 
   return (

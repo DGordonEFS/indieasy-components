@@ -23,8 +23,10 @@ class DropDown extends Component {
 			if (open) {
 				document.removeEventListener('mouseup', this.closeHandler);
 				document.addEventListener('mouseup', this.closeHandler);
+				if (this.props.onOpen) this.props.onOpen();
 			} else {
 				document.removeEventListener('mouseup', this.closeHandler);
+				if (this.props.onClose) this.props.onClose();
 			}
 
 			return { open: !prevState.open };
@@ -45,6 +47,8 @@ class DropDown extends Component {
 	};
 
 	closeHandler = () => {
+
+		if (this.props.onClose) this.props.onClose();
 		this.setState({ open: false });
 	};
 
