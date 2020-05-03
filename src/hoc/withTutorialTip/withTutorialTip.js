@@ -2,9 +2,6 @@ import { connect } from 'react-redux';
 import { tutorialTips } from '@indieasy.software/indieasy-engine';
 
 const mapStateToProps = (state, ownerProps) => {
-	console.log(
-		tutorialTips.system.getManager(ownerProps.managerId || '_default')
-	);
 	return {
 		tutorialTip: tutorialTips.system
 			.getManager(ownerProps.managerId || '_default')

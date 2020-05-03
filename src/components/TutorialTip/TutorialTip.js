@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { withTutorialTip } from '../../hoc/withTutorialTip';
 import { withTheming } from '../../hoc/withTheming';
@@ -6,6 +6,11 @@ import { withTheming } from '../../hoc/withTheming';
 import Modal from './Modal';
 
 const TutorialTip = (props) => {
+	const tipRef = useRef(props.tutorialTip);
+	const lastTipRef = tipRef.current;
+	tipRef.current = props.tutorialTip;
+
+
 	if (!props.tutorialTip) return null;
 
 	const style = {
@@ -27,7 +32,7 @@ const TutorialTip = (props) => {
 	return (
 		<div style={style}>
 			{modal}
-			<Renderer {...props} />
+			<Renderer {...props} lastTutorialTip={lastTipRef} />
 		</div>
 	);
 };
