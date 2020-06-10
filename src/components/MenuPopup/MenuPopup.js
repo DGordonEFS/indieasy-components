@@ -102,7 +102,7 @@ const MenuPopup = props => {
   };
 
   const selectItemHandler = item => {
-    if (item.data) return;
+    //if (item.data) return;
 
     if (props.onMenuItem) props.onMenuItem(item);
   };
