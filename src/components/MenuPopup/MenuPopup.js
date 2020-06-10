@@ -107,6 +107,10 @@ const MenuPopup = props => {
     if (props.onMenuItem) props.onMenuItem(item);
   };
 
+  const mouseUpHandler = ev => {    
+		ev.stopPropagation();
+  }
+
   return (
     <List
       {...props}
@@ -116,6 +120,7 @@ const MenuPopup = props => {
       classNames={props.classNames || classNames}
       itemRenderer={MenuPopupItem}
       onSelectItem={selectItemHandler}
+      onMouseUp={mouseUpHandler}
     />
   );
 };
