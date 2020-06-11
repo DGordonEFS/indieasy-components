@@ -87,7 +87,7 @@ class DropDown extends Component {
 				? this.props.selectedIndex
 				: this.state.selectedIndex;
 
-		const text = selectedIndex > -1 ? this.props.data[selectedIndex].text : '';
+		const text = this.props.text || (selectedIndex > -1 ? this.props.data[selectedIndex].text : '');
 
 		return (
 			<div style={{ width: this.props.width || '100%' }}>
