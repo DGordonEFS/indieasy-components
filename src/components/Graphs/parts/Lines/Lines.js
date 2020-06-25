@@ -37,6 +37,13 @@ const LineIcon = props => {
     ? props.color
     : props.highlightColor || props.color;
 
+    let innerColor = !isHighlighted
+    ? props.innerColor
+    : props.innerHighlightColor || props.innerColor;
+
+    if (!innerColor)
+      innerColor = "white";
+
   const outterStyle = {
     backgroundColor: color,
     borderRadius: '50%',
@@ -52,7 +59,7 @@ const LineIcon = props => {
     position: 'relative',
     left: '3px',
     top: '3px',
-    backgroundColor: 'white',
+    backgroundColor: innerColor,
     borderRadius: '50%',
     width: '6px',
     height: '6px'
@@ -176,6 +183,8 @@ const Lines = props => {
             <LineIcon
               color={item.color}
               highlightColor={item.highlightColor}
+              innerColor={item.innerColor}
+              innerHighlightColor={item.innerHighlightColor}
               pointer={props.pointer}
               data={position}
               onHighlightItem={(pos, highlighted, ev) =>
