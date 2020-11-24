@@ -44,25 +44,31 @@ const LineIcon = props => {
     if (!innerColor)
       innerColor = "white";
 
+    const size = props.size || 12;
+    const halfSize = size / 2;
+
+    const innerSize = props.innerSize || 6;
+    const innerHalfSize = innerSize / 2;
+
   const outterStyle = {
     backgroundColor: color,
     borderRadius: '50%',
-    width: '12px',
-    height: '12px',
+    width: `${size}px`,
+    height: `${size}px`,
     position: 'relative',
-    left: '-6px',
-    top: '6px',
+    left: `-${halfSize}px`,
+    top: `${halfSize}px`,
     zIndex: 100,
     cursor: props.pointer ? 'pointer' : null
   };
   const innerStyle = {
     position: 'relative',
-    left: '3px',
-    top: '3px',
+    left: `${innerHalfSize}px`,
+    top: `${innerHalfSize}px`,
     backgroundColor: innerColor,
     borderRadius: '50%',
-    width: '6px',
-    height: '6px'
+    width: `${innerSize}px`,
+    height: `${innerSize}px`
   };
 
   const mouseEnterHandler = ev => {
