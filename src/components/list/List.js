@@ -22,7 +22,7 @@ const ListItem = (props) => {
 	if (props.selected) classes.push(props.css[classNames.SELECTED]);
 
 	return (
-		<div {...props.itemProps} className={classes.join(' ')}>
+		<div {...props.itemProps} {...props.data.itemProps} className={classes.join(' ')}>
 			{props.data.text}
 		</div>
 	);
