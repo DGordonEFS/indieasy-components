@@ -122,6 +122,7 @@ const createLines = (props) => {
 			crossValueReverse={props.crossValueReverse}
 			horizontal={props.horizontal}
 			pointer={props.pointer}
+			pointerEvents={props.pointerEvents}
 			onHighlightItem={highlightItemHandler}
 			onSelectItem={selectItemHandler}
 		/>

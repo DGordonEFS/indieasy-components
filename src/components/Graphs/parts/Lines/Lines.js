@@ -165,7 +165,7 @@ const Lines = props => {
             x = crossValuePercent * width;
           }
 
-          const positionStyle = { position: 'absolute', pointerEvents: 'all' };
+          const positionStyle = { position: 'absolute', pointerEvents: props.pointerEvents || 'all' };
 
           positionStyle.left = x + 'px';
           positionStyle.bottom = y + 'px';
@@ -191,6 +191,8 @@ const Lines = props => {
               highlightColor={item.highlightColor}
               innerColor={item.innerColor}
               innerHighlightColor={item.innerHighlightColor}
+              size={item.size}
+              innerSize={item.innerSize}
               pointer={props.pointer}
               data={position}
               onHighlightItem={(pos, highlighted, ev) =>

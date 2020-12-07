@@ -3,6 +3,7 @@ export { default as DropDown } from './DropDown';
 export { default as BarGraph } from './Graphs/BarGraph';
 export { default as LineGraph } from './Graphs/LineGraph';
 export { default as List } from './List';
+export { default as Markup } from './Markup';
 export { default as MenuBar } from './MenuBar';
 export { default as MenuPopup } from './MenuPopup';
 export { default as ScrollPane } from './ScrollPane';
